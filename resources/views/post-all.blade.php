@@ -1,13 +1,14 @@
 @extends('base')
 
 @section('content')
-<div class="page-title">Admin area post list</div>
+<div class="page-title">Post all</div><br>
 <div class="posts">
 	@foreach($posts as $post)
 		<div class="post-item">
 			<p>Title: {{ $post->title }}</p>
 			<p>Description: {{ $post->content }}</p>
-			<button type="">Delete</button>
+            <a href="/post-edit/{{ $post->id }}"><button>Edit</button></a>
+			<a href="/post-all/delete/{{ $post->id }}"><button>Delete</button></a>
 		</div><br>
 	@endforeach
 </div>

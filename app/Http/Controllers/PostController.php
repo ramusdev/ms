@@ -10,14 +10,11 @@ class PostController extends Controller
 {
 	public function addIndex() 
 	{
-		//echo 'from post controller';
 		return view('post-add', array());
 	}
 
 	public function addAction(Request $request)
 	{
-		//echo 'from add action';
-
 		$post = new Post();
 
 		$post->title = $request->title;
@@ -28,21 +25,31 @@ class PostController extends Controller
 		return redirect('/post-add');
 	}
 
-	public function editIndex()
-	{
-		//echo 'post edit';
+    public function deleteAction($id) 
+    {
+        $post = Post::find($id);
+        $post->delete();
 
-		//return view('post-edit', array());
-	}
+        return redirect('/');
+    }
 
 	public function allIndex()
 	{
-		$posts = Post::orderBy('created_at', 'desc')->take(10)->get();
-
-		//print_r($posts);
-		//$posts = 'some text in string';
+		$posts = Post::orderBy('created_at', 'desc')->take(100)->get();
 
 		return view('post-all', ['posts' => $posts]);
+    }
+    
+    public function editIndex(Request $request, $id)
+    {
+        $post = Post::find($id);
+
+        return view('post-edit', ['post' => $post]);
+    }
+
+    public function editAction()
+	{
+        return redirect('/');
 	}
     
 }
