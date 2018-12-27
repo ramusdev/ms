@@ -40,15 +40,22 @@ class PostController extends Controller
 		return view('post-all', ['posts' => $posts]);
     }
     
-    public function editIndex(Request $request, $id)
+    public function editIndex($id)
     {
         $post = Post::find($id);
 
         return view('post-edit', ['post' => $post]);
     }
 
-    public function editAction()
+    public function editAction(Request $request, $id)
 	{
+        $post = Post::find($id);
+
+        $post->title = $request->title;
+        $post->content = $request->content;
+
+        $post->save();
+
         return redirect('/');
 	}
     
