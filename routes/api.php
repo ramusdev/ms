@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Http\Resources\PostResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('articles', 'ApiPostController');
+
+/*
+Route::get('/articles/{id}', function($id) {
+    return new PostResource(Post::find($id));
+});
+*/
+
+//Route::get('/articles/{id}', 'ApiPostController@show');

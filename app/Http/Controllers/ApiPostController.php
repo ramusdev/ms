@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
 use Illuminate\Http\Request;
+use App\Post;
 use App\Http\Resources\PostResource;
+use App\Http\Resources\PostResourceCollection;
 
 class ApiPostController extends Controller
 {
@@ -15,7 +16,9 @@ class ApiPostController extends Controller
      */
     public function index()
     {
-        //
+        $post = Post::all();
+
+        return new PostResourceCollection($post);
     }
 
     /**
@@ -23,9 +26,11 @@ class ApiPostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        //Post::create($request->all());
+
+        echo 'show form';
     }
 
     /**
@@ -36,7 +41,9 @@ class ApiPostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Post::create($request->all());
+
+        return response()->json(null, 200);
     }
 
     /**
@@ -45,8 +52,10 @@ class ApiPostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
+        $post = Post::findOrFail($id);
+
         return new PostResource($post);
     }
 
@@ -81,6 +90,9 @@ class ApiPostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return response()->json(null, 204);
     }
 }
