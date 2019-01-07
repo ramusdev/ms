@@ -19,12 +19,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('articles', 'ApiPostController');
+//Route::resource('articles', 'ApiPostController');
 
-/*
-Route::get('/articles/{id}', function($id) {
-    return new PostResource(Post::find($id));
-});
-*/
+// Show collection articles
+Route::get('articles', 'ApiPostController@index');
 
-//Route::get('/articles/{id}', 'ApiPostController@show');
+// Show one article
+Route::get('article/{id}', 'ApiPostController@show');
+
+// Store one article
+Route::post('article', 'ApiPostController@store');
+
+// Update one article
+Route::put('article/{id}', 'ApiPostController@update');
+
+// Delete article
+Route::delete('article/{id}', 'ApiPostController@destroy');

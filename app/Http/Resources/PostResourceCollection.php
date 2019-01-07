@@ -19,3 +19,4 @@ class PostResourceCollection extends ResourceCollection
         ];
     }
 }
+ 
