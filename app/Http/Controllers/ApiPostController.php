@@ -16,7 +16,6 @@ class ApiPostController extends Controller
      */
     public function index()
     {
-        //$post = Post::all();
         $post = Post::paginate(10);
 
         return new PostResourceCollection($post);
@@ -29,7 +28,7 @@ class ApiPostController extends Controller
      */
     public function create(Request $request)
     {
-        //Post::create($request->all());
+        //
     }
 
     /**
@@ -40,8 +39,6 @@ class ApiPostController extends Controller
      */
     public function store(Request $request)
     {
-        //$post = Post::findOrFail($request->post_id);
-
         $post = Post::create($request->all());
 
         if ($post) {
@@ -113,7 +110,5 @@ class ApiPostController extends Controller
         else {
             return response()->json(null, 404);
         }
-
-        //return response()->json(null, 204);
     }
 }
