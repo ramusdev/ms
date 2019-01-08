@@ -12,13 +12,16 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
+        factory(Post::class, 30)->create();
+        
+        /*
         $faker = \Faker\Factory::create();
-
         for ($i = 0; $i < 50; $i++) {
             Post::create([
                 'title' => $faker->sentence,
                 'content' => $faker->paragraph
             ]);
         }
+        */
     }
 }

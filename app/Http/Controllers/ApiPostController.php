@@ -16,7 +16,7 @@ class ApiPostController extends Controller
      */
     public function index()
     {
-        $post = Post::all();
+        $post = Post::paginate(10);
 
         return new PostResourceCollection($post);
     }
@@ -28,9 +28,7 @@ class ApiPostController extends Controller
      */
     public function create(Request $request)
     {
-        //Post::create($request->all());
-
-        echo 'show form';
+        //
     }
 
     /**
@@ -41,9 +39,15 @@ class ApiPostController extends Controller
      */
     public function store(Request $request)
     {
-        Post::create($request->all());
+        $post = Post::create($request->all());
 
-        return response()->json(null, 200);
+        if ($post) {
+            return new PostResource($post);
+        } 
+        else {
+            return response()->json(null, 409);
+        }
+        
     }
 
     /**
@@ -79,7 +83,15 @@ class ApiPostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id)->update($request->all());
+
+        if ($post) {
+            return new PostResource($post);
+        }
+        else {
+            return response()->json(null, 404);
+        }
+
     }
 
     /**
@@ -91,8 +103,12 @@ class ApiPostController extends Controller
     public function destroy($id)
     {
         $post = Post::findOrFail($id);
-        $post->delete();
 
-        return response()->json(null, 204);
+        if ($post->delete()) {
+            return new PostResource($post);
+        } 
+        else {
+            return response()->json(null, 404);
+        }
     }
 }
