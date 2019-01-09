@@ -8,9 +8,14 @@ class Post extends Model
 {
     public $table = 'posts';
 
+    protected $attributes = [
+        'status' => 'pending'
+    ];
+
     protected $fillable = [
         'title',
-        'content'
+        'content',
+        'status'
     ];
 
     protected $date = [

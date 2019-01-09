@@ -24,6 +24,10 @@ Route::post('/post-edit/edit/{id}', 'PostController@editAction');
 Route::get('/post-all/delete/{id}', 'PostController@deleteAction');
 Route::get('/', 'PostController@allIndex');
 
-// Auth
+// Show all images
+Route::get('/images', 'ImageController@indexAction');
+Route::get('/image/delete/{id}', 'ImageController@deleteAction');
+
+// Auth user routes
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
