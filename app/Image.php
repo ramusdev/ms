@@ -9,8 +9,10 @@ class Image extends Model
     public $table = 'images';
 
     protected $fillable = [
-        'title',
-        'path'
+        'type',
+        'name',
+        'path',
+        'post_id'
     ];
 
     protected $data = [
@@ -18,5 +20,9 @@ class Image extends Model
         'update_at',
         'deleted_at'
     ];
+
+    public function post() {
+        return $this->belongsTo('App\Post');
+    }
 
 }

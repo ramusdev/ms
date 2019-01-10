@@ -13,6 +13,11 @@
         </div>
         <div class="col-10">
             <h5>Галерея</h5>
+            @if (session('message')) 
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif  
 			<table class="table">
 				<tbody>
 					@foreach($images as $image)

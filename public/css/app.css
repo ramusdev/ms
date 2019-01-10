@@ -9,3 +9,7 @@
 .admin-bar a:hover {
     color: #b1b1b1;
 }
+
+.admin-card-img {
+    height: 350px;
+}

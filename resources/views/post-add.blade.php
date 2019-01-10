@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-	<form class="row" action="{{ action('PostController@addAction') }}" method="post">
+	<form class="row" action="{{ action('PostController@addAction') }}" enctype="multipart/form-data" method="post">
         <div class="col-2 admin-bar">
             <nav class="nav flex-column">
                 <a class="nav-link" href="/posts">Посты</a>
@@ -47,8 +47,11 @@
                 </div>
             </div>
             <div class="card bg-light mb-3">
-                <div class="card-header">Миниатюра</div>
                 <div class="card-body">
+                    <div class="form-group">
+                        <label for="inputFile">Загрузить миниатюру</label>
+                        <input class="form-control-file" type="file" id="inputFile" name="thumbnail">
+                    </div>
                 </div>
             </div>
         </div>  

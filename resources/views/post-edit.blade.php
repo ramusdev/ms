@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-	<form class="row" action="{{ action('PostController@editAction', $post->id) }}" method="post">
+	<form class="row" action="{{ action('PostController@editAction', $post->id) }}" enctype="multipart/form-data" method="post">
         <div class="col-2 admin-bar">
             <nav class="nav flex-column">
                 <a class="nav-link" href="/posts">Посты</a>
@@ -21,11 +21,11 @@
             @endif    
             <div class="form-group">
                 <label for="inputTitle">Заголовок</label>
-                <input class="form-control" type="text" id="inputTitle" name="title" value="{{ $post->title }}">
+                <input class="form-control" type="text" id="inputTitle" name="title" value="{{ $post->title }}" placeholder="Заголовок поста">
             </div>
             <div class="form-group">
                 <label for="textareaContent">Контент</label>
-                <textarea class="form-control" rows="10" name="content" id="textareaContent">{{ $post->content }}</textarea>
+                <textarea class="form-control" rows="10" name="content" id="textareaContent" placeholder="Описание">{{ $post->content }}</textarea>
             </div>
         </div>
         <div class="col-3">
@@ -47,7 +47,10 @@
                 <div class="card-header">Информация</div>
                 <div class="card-body">
                     <p class="card-text">Дата публикации: {{ $post->created_at->format('d.m.Y') }}</p>
-                    <p class="card-text">Ссылка: {{ url()->current() }}</p>
+                    <p class="card-text">Пост: {{ url()->current() }}</p>
+                    @if ($post->image()->exists())
+                        <p class="card-text">Миниатюра: {{ url('storage/' . $post->image->path) }}</p>
+                    @endif
                 </div>
             </div>
             <div class="card bg-light mb-3">
@@ -56,11 +59,18 @@
                 </div>
             </div>
             <div class="card bg-light mb-3">
-                <img class="card-image-top" src="http://via.placeholder.com/443x200">
+                @if ($post->image()->exists())
+                    <img class="card-image-top admin-card-img" src="{{ url('storage/' . $post->image->path) }}"> 
+                @endif
                 <div class="card-body">
-                    <h5 class="card-title">Миниатюра</h5>
-                    <p class="card-text">About image</p>
-                    <a class="btn btn-secondary" href="/">Загрузить</a>
+                    <div class="form-group">
+                        @if ($post->image()->exists())
+                            <label for="inputFile">{{ $post->image->name }}</label>
+                        @else
+                            <label for="inputFile">Загрузить миниатюру</label>
+                        @endif
+                        <input class="form-control-file" type="file" id="inputFile" name="thumbnail">
+                    </div>
                 </div>
             </div>
         </div>  

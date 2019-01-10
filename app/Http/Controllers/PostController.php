@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Image;
 
 class PostController extends Controller
 {
@@ -30,10 +32,15 @@ class PostController extends Controller
 		$post->title = $request->title;
         $post->content = $request->content;
         $post->status = $request->status;
+        $file = $request->file('thumbnail');
 
-        $post->save();
+        if ($post->save()) {
+            $message = 'Пост добавлен';
+        }
 
-		return redirect()->action('PostController@editIndex', ['id' => $post->id]);
+        $this->storeFile($post, $file);
+
+		return redirect()->action('PostController@editIndex', ['id' => $post->id])->with('message', $message);
 	}
 
     /**
@@ -44,6 +51,7 @@ class PostController extends Controller
     public function deleteAction($id) 
     {
         $post = Post::find($id);
+        $post->image()->delete();
         $post->delete();
 
         return redirect('/');
@@ -70,16 +78,38 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->content = $request->content;
         $post->status = $request->status;
+        $file = $request->file('thumbnail');
 
         if ($post->save()) {
             $message = 'Изменения сохранены';
         }
-        else {
-            $message = 'Ошибка при сохранении';
+
+        $this->storeFile($post, $file);
+                
+        return redirect()->action('PostController@editIndex', ['id' => $post->id])->with('message', $message);
+    }
+
+    public function storeFile($post, $file) 
+    {  
+        if ($file) {
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $filePath = Storage::putFileAs('thumbnails', $file, $fileName);
+
+            $imageData = [
+                'type' => 'thumbnail',
+                'path' => $filePath,
+                'name' => $fileName
+            ];
+
+            if (! $post->image()->exists()) {
+                $image = new Image($imageData);
+                $post->image()->save($image);    
+                //$post->image()->create($imageData);
+            }
+            else {
+                $post->image()->update($imageData);
+            }
         }
-        
-        //return redirect()->action('PostController@editIndex', ['id' => $post->id])->with('message', $message);
-        return back()->with('message', $message);
-	}
+    }
     
 }

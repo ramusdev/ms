@@ -23,5 +23,9 @@ class Post extends Model
     	'updated_at',
     	'deleted_at'
     ];
+
+    public function image() {
+        return $this->hasOne('App\Image', 'post_id');
+    }
    
 }
