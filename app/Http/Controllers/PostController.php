@@ -9,71 +9,65 @@ use App\Post;
 use App\Image;
 
 class PostController extends Controller
-{
+{   
     /**
-     * Index create article
+     * Add post
      * 
      */
-    public function addIndex() 
-	{
-		return view('post-add', array());
-	}
+    public function addPost()
+    {
+        return view('post-add');
+    }
 
     /**
-     * Create article
-     * 
-     * @param Request $request
-     */
-
-	public function addAction(Request $request)
-	{
-		$post = new Post();
-
-		$post->title = $request->title;
-        $post->content = $request->content;
-        $post->status = $request->status;
-        $file = $request->file('thumbnail');
-
-        if ($post->save()) {
-            $message = 'Пост добавлен';
-        }
-
-        $this->storeFile($post, $file);
-
-		return redirect()->action('PostController@editIndex', ['id' => $post->id])->with('message', $message);
-	}
-
-    /**
-     * Remove article by id
+     * Remove post
      * 
      * @param int $id
      */
-    public function deleteAction($id) 
+    public function deletePost($id) 
     {
         $post = Post::find($id);
-        $post->image()->delete();
-        $post->delete();
 
-        return redirect('/');
+        $post->image()->delete();
+
+        if ($post->delete()) {
+            $message = 'Пост удален';
+        }
+
+        return redirect('admin/posts')->with('message', $message);
     }
 
-	public function allIndex()
+    /**
+     * All posts
+     * 
+     */
+	public function allPosts()
 	{
 		$posts = Post::orderBy('created_at', 'desc')->paginate(10);
 
 		return view('post-all', ['posts' => $posts]);
     }
-    
-    public function editIndex($id)
+
+    /**
+     * Edit post
+     * 
+     */
+    public function editPost($id)
     {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
 
         return view('post-edit', ['post' => $post]);
     }
 
-    public function editAction(Request $request, $id)
-	{
-        $post = Post::findOrFail($id);
+    /**
+     * Store action used for craetion and edition
+     * 
+     */
+    public function storeAction(Request $request, $id = 0)
+	{   
+        $post = Post::firstOrCreate([
+            'id' => $id
+        ]);
 
         $post->title = $request->title;
         $post->content = $request->content;
@@ -86,7 +80,7 @@ class PostController extends Controller
 
         $this->storeFile($post, $file);
                 
-        return redirect()->action('PostController@editIndex', ['id' => $post->id])->with('message', $message);
+        return redirect()->action('PostController@editPost', ['id' => $post->id])->with('message', $message);
     }
 
     public function storeFile($post, $file) 

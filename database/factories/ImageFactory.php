@@ -5,7 +5,8 @@ use App\Image;
 
 $factory->define(Image::class, function (Faker $faker) {
     return [
-        'title' => $faker->text(50),
-        'path' => 'https://via.placeholder.com/50x50'
+        'type' => 'thumbnail',
+        'name' => '1547197114_nature.jpg',
+        'path' => 'thumbnails/1547197114_nature.jpg',
     ];
 });

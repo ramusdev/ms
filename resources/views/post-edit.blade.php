@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-	<form class="row" action="{{ action('PostController@editAction', $post->id) }}" enctype="multipart/form-data" method="post">
+	<form class="row" action="{{ action('PostController@storeAction', $post->id) }}" enctype="multipart/form-data" method="post">
         <div class="col-2 admin-bar">
             <nav class="nav flex-column">
                 <a class="nav-link" href="/posts">Посты</a>
@@ -39,8 +39,8 @@
                         </select>
                     </div>
                     <button class="btn btn-secondary" type="submit">Сохранить</button>
-                    <a class="btn btn-danger" href="/post-all/delete/{{ $post->id }}">Удалить</a>
-                    <a class="btn btn-info" href="/post-add">Новый</a>
+                    <a class="btn btn-danger" href="{{ action('PostController@deletePost', $post->id) }}">Удалить</a>
+                    <a class="btn btn-info" href="{{ action('PostController@addPost') }}">Новый</a>
                 </div>
             </div>
             <div class="card bg-light mb-3">

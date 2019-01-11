@@ -16,13 +16,12 @@
     //return view('welcome');
 //});
 
-// Post
-Route::get('/post-add', 'PostController@addIndex');
-Route::post('/post-add/add', 'PostController@addAction');
-Route::get('/post-edit/{id}', 'PostController@editIndex');
-Route::post('/post-edit/edit/{id}', 'PostController@editAction');
-Route::get('/post-all/delete/{id}', 'PostController@deleteAction');
-Route::get('/', 'PostController@allIndex');
+// Admin posts route
+Route::get('/admin/posts', 'PostController@allPosts');
+Route::get('/admin/post/edit/{id}', 'PostController@editPost');
+Route::get('/admin/post/delete/{id}', 'PostController@deletePost');
+Route::post('/admin/post/store/{id?}', 'PostController@storeAction');
+Route::get('/admin/post/add', 'PostController@addPost');
 
 // Show all images
 Route::get('/images', 'ImageController@indexAction');
