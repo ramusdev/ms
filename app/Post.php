@@ -27,5 +27,9 @@ class Post extends Model
     public function image() {
         return $this->hasOne('App\Image', 'post_id');
     }
+
+    public function category() {
+        return $this->hasOne('App\Category', 'post_id');
+    }
    
 }

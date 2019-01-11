@@ -23,6 +23,12 @@ Route::get('/admin/post/delete/{id}', 'PostController@deletePost');
 Route::post('/admin/post/store/{id?}', 'PostController@storePost');
 Route::get('/admin/post/add', 'PostController@addPost');
 
+// Admin category
+Route::get('/admin/categories', 'CategoryController@allCategories');
+Route::post('/admin/category/add/{id}', 'CategoryController@addCategory');
+Route::get('/admin/category/delete/{id}', 'CategoryController@deleteCategory');
+Route::post('/admin/category/store/{id?}', 'CategoryController@storeCategory');
+
 // Admin images
 Route::get('/admin/images', 'ImageController@allImages');
 Route::get('/admin/image/delete/{id}', 'ImageController@deleteImage');

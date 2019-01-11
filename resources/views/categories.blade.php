@@ -1,0 +1,52 @@
+@extends('base')
+
+@section('content')
+<div class="container-fluid">
+	<div class="row">
+        <div class="col-2 admin-bar">
+            <nav class="nav flex-column">
+                <a class="nav-link" href="/posts">Посты</a>
+                <a class="nav-link" href="/pages">Страницы</a>
+                <a class="nav-link" href="/messages">Сообщения <span class="badge">2</span></a>
+                <a class="nav-link" href="/options">Настройки</a>
+            </nav>
+        </div>
+        @csrf
+        <form class="col-5" action="{{ action('CategoryController@storeCategory')}}" method="post">
+            <h5 class="d-inline-block">Добавить категорию</h5>
+            @if (session('message')) 
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif    
+            <div class="form-group">
+                <label for="inputName">Название</label>
+                <input class="form-control" type="text" id="inputTitle" name="name" value="" placeholder="Название категории">
+            </div>
+            <div class="form-group">
+                <label for="inputSlug">Слаг</label>
+                <input class="form-control" type="text" id="inputSlug" name="slug" value="" placeholder="Слаг категории">
+            </div>
+            <button class="btn btn-secondary" type="submit">Добавить</button>
+        </form>
+        <div class="col-5">
+            <h5 class="d-inline-block">Категории</h5>
+            <table class="table">
+				<tbody>
+					@foreach($categories as $category)
+						<tr>
+							<th scope="row">{{ $loop->iteration }}</th>
+							<td><a href="{{ action('CategoryController@editCategory', $category->id) }}">{{ $category->name }}</a></td>
+							<td>{{ $category->created_at->format('d.m.Y') }}</td>
+							<td>
+								<a class="btn btn-outline-secondary btn-sm" href="{{ action('CategoryController@editCategory', $category->id) }}" role="button">Редактирование</a>
+								<a class="btn btn-outline-danger btn-sm" href="{{ action('CategoryController@deleteCategory', $post->id) }}" role="button">Удаление</a>
+							</td>
+						</tr>
+					@endforeach
+				</tbody>
+			</table>
+        </div>  
+	</div>
+</div>
+@endsection
