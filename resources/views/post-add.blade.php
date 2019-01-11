@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-	<form class="row" action="{{ action('PostController@storeAction')}}" enctype="multipart/form-data" method="post">
+	<form class="row" action="{{ action('PostController@storePost')}}" enctype="multipart/form-data" method="post">
         <div class="col-2 admin-bar">
             <nav class="nav flex-column">
                 <a class="nav-link" href="/posts">Посты</a>

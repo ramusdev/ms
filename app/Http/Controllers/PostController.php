@@ -63,7 +63,7 @@ class PostController extends Controller
      * Store action used for craetion and edition
      * 
      */
-    public function storeAction(Request $request, $id = 0)
+    public function storePost(Request $request, $id = 0)
 	{   
         $post = Post::firstOrCreate([
             'id' => $id

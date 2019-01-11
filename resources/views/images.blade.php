@@ -24,17 +24,18 @@
 						<tr>
 							<th scope="row">{{ $loop->iteration }}</th>
                             <th>
-                                <img class="rounded" style="width:50px" src="{{ $image->path }}">
+                                <img class="rounded admin-all-images" src="{{ url('storage/' . $image->path ) }}">
                             </th>
-							<td><a href="{{ $image->path }}">{{ $image->title }}</a></td>
+							<td><a href="{{ url('storage/' . $image->path ) }}">{{ $image->title }}</a></td>
 							<td>{{ $image->created_at->format('d.m.Y') }}</td>
 							<td>
-                                <a class="btn btn-outline-danger btn-sm" href="/image/delete/{{ $image->id }}" role="button">Удаление</a>
+                                <a class="btn btn-outline-danger btn-sm" href="{{ action('ImageController@deleteImage', $image->id) }}" role="button">Удаление</a>
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
+            {{ $images->links() }}
         </div>
 	</div>
 </div>
