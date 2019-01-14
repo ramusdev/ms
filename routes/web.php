@@ -28,6 +28,7 @@ Route::get('/admin/categories', 'CategoryController@allCategories');
 Route::post('/admin/category/add/{id}', 'CategoryController@addCategory');
 Route::get('/admin/category/delete/{id}', 'CategoryController@deleteCategory');
 Route::post('/admin/category/store/{id?}', 'CategoryController@storeCategory');
+ROute::get('/admin/category/edit/{id}', 'CategoryController@editCategory');
 
 // Admin images
 Route::get('/admin/images', 'ImageController@allImages');

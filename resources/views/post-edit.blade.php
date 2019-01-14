@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-	<form class="row" action="{{ action('PostController@storePost', $post->id) }}" enctype="multipart/form-data" method="post">
+    <form class="row" action="{{ action('PostController@storePost', $post->id) }}" enctype="multipart/form-data" method="post">
         <div class="col-2 admin-bar">
             <nav class="nav flex-column">
                 <a class="nav-link" href="/posts">Посты</a>
@@ -14,14 +14,15 @@
         @csrf
         <div class="col-7">
             <h5 class="d-inline-block">Редактирование поста</h5>
-            @if (session('message')) 
-                <div class="alert alert-success">
-                    {{ session('message') }}
-                </div>
-            @endif    
+            @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+            @endif
             <div class="form-group">
                 <label for="inputTitle">Заголовок</label>
-                <input class="form-control" type="text" id="inputTitle" name="title" value="{{ $post->title }}" placeholder="Заголовок поста">
+                <input class="form-control" type="text" id="inputTitle" name="title" value="{{ $post->title }}"
+                    placeholder="Заголовок поста">
             </div>
             <div class="form-group">
                 <label for="textareaContent">Контент</label>
@@ -56,11 +57,17 @@
             <div class="card bg-light mb-3">
                 <div class="card-header">Категории</div>
                 <div class="card-body">
+                    @foreach ($categories as $category)
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="category[]" value="{{ $category->slug }}" id="customCheck{{ $loop->iteration }}">
+                            <label class="custom-control-label" for="customCheck{{ $loop->iteration }}">{{ $category->name }}</label>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="card bg-light mb-3">
                 @if ($post->image()->exists())
-                    <img class="card-image-top admin-card-img" src="{{ url('storage/' . $post->image->path) }}"> 
+                    <img class="card-image-top admin-card-img" src="{{ url('storage/' . $post->image->path) }}">
                 @endif
                 <div class="card-body">
                     <div class="form-group">
@@ -73,7 +80,7 @@
                     </div>
                 </div>
             </div>
-        </div>  
-	</form>
+        </div>
+    </form>
 </div>
 @endsection

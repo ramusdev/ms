@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Category;
 use App\Image;
 
 class PostController extends Controller
@@ -55,8 +56,9 @@ class PostController extends Controller
     public function editPost($id)
     {
         $post = Post::findOrFail($id);
+        $categories = Category::all();
 
-        return view('post-edit', ['post' => $post]);
+        return view('post-edit', ['post' => $post, 'categories' => $categories]);
     }
 
     /**
@@ -78,9 +80,24 @@ class PostController extends Controller
             $message = 'Изменения сохранены';
         }
 
+        //$category = Category::where('slug', $request->category[1])->firstOrFail();
+        //$post->category()->save($category);
+
+        foreach ($request->category as $slug) {
+            $category = $category = Category::where('slug', $slug)->firstOrFail();
+            $categoryId[] = $category->id;
+        }
+
+        //dd($categoryId);
+
+        $post->category()->sync($categoryId);
+
+        //$category = Category::find(17);
+        //dd($request->category[0]);
+
         $this->storeFile($post, $file);
                 
-        return redirect()->action('PostController@editPost', ['id' => $post->id])->with('message', $message);
+        //return redirect()->action('PostController@editPost', ['id' => $post->id])->with('message', $message);
     }
 
     public function storeFile($post, $file) 

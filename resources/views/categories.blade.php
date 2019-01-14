@@ -12,7 +12,8 @@
             </nav>
         </div>
         @csrf
-        <form class="col-5" action="{{ action('CategoryController@storeCategory')}}" method="post">
+        <form class="col-5" action="{{ action('CategoryController@storeCategory') }}" method="post">
+            @csrf
             <h5 class="d-inline-block">Добавить категорию</h5>
             @if (session('message')) 
                 <div class="alert alert-success">
@@ -21,7 +22,7 @@
             @endif    
             <div class="form-group">
                 <label for="inputName">Название</label>
-                <input class="form-control" type="text" id="inputTitle" name="name" value="" placeholder="Название категории">
+                <input class="form-control" type="text" id="inputName" name="name" value="" placeholder="Название категории">
             </div>
             <div class="form-group">
                 <label for="inputSlug">Слаг</label>
@@ -36,16 +37,17 @@
 					@foreach($categories as $category)
 						<tr>
 							<th scope="row">{{ $loop->iteration }}</th>
-							<td><a href="{{ action('CategoryController@editCategory', $category->id) }}">{{ $category->name }}</a></td>
+							<td><a href="">{{ $category->name }}</a></td>
 							<td>{{ $category->created_at->format('d.m.Y') }}</td>
 							<td>
 								<a class="btn btn-outline-secondary btn-sm" href="{{ action('CategoryController@editCategory', $category->id) }}" role="button">Редактирование</a>
-								<a class="btn btn-outline-danger btn-sm" href="{{ action('CategoryController@deleteCategory', $post->id) }}" role="button">Удаление</a>
+								<a class="btn btn-outline-danger btn-sm" href="{{ action('CategoryController@deleteCategory', $category->id) }}" role="button">Удаление</a>
 							</td>
 						</tr>
 					@endforeach
 				</tbody>
 			</table>
+            {{ $categories->links() }}
         </div>  
 	</div>
 </div>

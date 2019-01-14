@@ -27,6 +27,18 @@ class CategoryController extends Controller
         return view('categories');
     }
 
+    /**
+     * Edit cateogry
+     * 
+     */
+    public function editCategory($id)
+    {
+        $category = Category::findOrFail($id);
+        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
+
+        return view('categories-edit', ['category' => $category, 'categories' => $categories]);
+    }
+
     /** 
      * Store category
      * 
@@ -44,9 +56,8 @@ class CategoryController extends Controller
             $message = 'Категория сохранена';
         }
 
-        return redirect()->back()->with('message', $message);
+        return redirect('/admin/categories')->with('message', $message);
     }
-
 
     /**
      * Delete category
@@ -60,6 +71,6 @@ class CategoryController extends Controller
             $message = 'Категория удалена';
         }
 
-        return redirect()->back()->with('message', $message);
+        return redirect('/admin/categories')->with('message', $message);
     }
 }

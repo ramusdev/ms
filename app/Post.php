@@ -29,7 +29,7 @@ class Post extends Model
     }
 
     public function category() {
-        return $this->hasOne('App\Category', 'post_id');
+        return $this->belongsToMany('App\Category');
     }
    
 }

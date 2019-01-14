@@ -8,6 +8,11 @@ class Category extends Model
 {
     public $table = 'categories';
 
+    protected $fillable = [
+        'name',
+        'slug'
+    ];
+
     protected $date = [
         'created_at',
         'updated_at',
@@ -16,6 +21,6 @@ class Category extends Model
 
     public function post()
     {
-        return $this->belongsTo('App\Post');
+        return $this->belongsToMany('App\Post');
     }
 }
