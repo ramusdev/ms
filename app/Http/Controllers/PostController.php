@@ -3,124 +3,35 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use App\Post;
-use App\Category;
-use App\Image;
 
 class PostController extends Controller
 {   
     /**
-     * Add post
+     * Show all posts
      * 
      */
-    public function addPost()
+    public function allPosts()
     {
-        return view('post-add');
+        $posts = Post::where('status', 'published')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('front/front-posts', ['posts' => $posts]);
     }
 
     /**
-     * Remove post
-     * 
-     * @param int $id
-     */
-    public function deletePost($id) 
-    {
-        $post = Post::find($id);
-
-        $post->image()->delete();
-
-        if ($post->delete()) {
-            $message = 'Пост удален';
-        }
-
-        return redirect('admin/posts')->with('message', $message);
-    }
-
-    /**
-     * All posts
+     * Show post by id
      * 
      */
-	public function allPosts()
-	{
-		$posts = Post::orderBy('created_at', 'desc')->paginate(10);
-
-		return view('post-all', ['posts' => $posts]);
-    }
-
-    /**
-     * Edit post
-     * 
-     */
-    public function editPost($id)
+    public function showPost($id)
     {
         $post = Post::findOrFail($id);
-        $categories = Category::all();
 
-        return view('post-edit', ['post' => $post, 'categories' => $categories]);
+        return view('front/front-show-post', ['post' => $post]);
     }
 
-    /**
-     * Store action used for craetion and edition
-     * 
-     */
-    public function storePost(Request $request, $id = 0)
-	{   
-        $post = Post::firstOrCreate([
-            'id' => $id
-        ]);
-
-        $post->title = $request->title;
-        $post->content = $request->content;
-        $post->status = $request->status;
-        $file = $request->file('thumbnail');
-
-        if ($post->save()) {
-            $message = 'Изменения сохранены';
-        }
-
-        //$category = Category::where('slug', $request->category[1])->firstOrFail();
-        //$post->category()->save($category);
-
-        foreach ($request->category as $slug) {
-            $category = $category = Category::where('slug', $slug)->firstOrFail();
-            $categoryId[] = $category->id;
-        }
-
-        //dd($categoryId);
-
-        $post->category()->sync($categoryId);
-
-        //$category = Category::find(17);
-        //dd($request->category[0]);
-
-        $this->storeFile($post, $file);
-                
-        //return redirect()->action('PostController@editPost', ['id' => $post->id])->with('message', $message);
-    }
-
-    public function storeFile($post, $file) 
-    {  
-        if ($file) {
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $filePath = Storage::putFileAs('thumbnails', $file, $fileName);
-
-            $imageData = [
-                'type' => 'thumbnail',
-                'path' => $filePath,
-                'name' => $fileName
-            ];
-
-            if (! $post->image()->exists()) {
-                $image = new Image($imageData);
-                $post->image()->save($image);    
-                //$post->image()->create($imageData);
-            }
-            else {
-                $post->image()->update($imageData);
-            }
-        }
-    }
     
+
 }

@@ -23,11 +23,11 @@
 					@foreach($posts as $post)
 						<tr>
 							<th scope="row">{{ $loop->iteration }}</th>
-							<td><a href="{{ action('PostController@editPost', $post->id) }}">{{ $post->title }}</a></td>
+							<td><a href="{{ action('AdminPostController@editPost', $post->id) }}">{{ $post->title }}</a></td>
 							<td>{{ $post->created_at->format('d.m.Y') }}</td>
 							<td>
-								<a class="btn btn-outline-secondary btn-sm" href="{{ action('PostController@editPost', $post->id) }}" role="button">Редактирование</a>
-								<a class="btn btn-outline-danger btn-sm" href="{{ action('PostController@deletePost', $post->id) }}" role="button">Удаление</a>
+								<a class="btn btn-outline-secondary btn-sm" href="{{ action('AdminPostController@editPost', $post->id) }}" role="button">Редактирование</a>
+								<a class="btn btn-outline-danger btn-sm" href="{{ action('AdminPostController@deletePost', $post->id) }}" role="button">Удаление</a>
 							</td>
 						</tr>
 					@endforeach

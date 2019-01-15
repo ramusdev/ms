@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use App\Image;
 
 class ImageController extends Controller
@@ -14,25 +13,19 @@ class ImageController extends Controller
      */
     public function allImages()
     {
-        $images = Image::orderBy('created_at', 'desc')->paginate(20);
+        $images = Image::orderBy('created_at', 'desc')->paginate(10);
 
-        return view('images', ['images' => $images]);
+        return view('/front/front-images', ['images' => $images]);
     }
 
     /**
-     * Delete image
+     * Show image
      * 
      */
-    public function deleteImage($id)
+    public function showImage($id)
     {
         $image = Image::findOrFail($id);
 
-        Storage::delete($image->path);
-
-        if ($image->delete()) {
-            $message = 'Изображение удалено';
-        }
-
-        return redirect()->back()->with('message', $message);
+        return view('/front/front-show-image', ['image' => $image]);
     }
 }

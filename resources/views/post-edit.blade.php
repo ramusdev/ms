@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-    <form class="row" action="{{ action('PostController@storePost', $post->id) }}" enctype="multipart/form-data" method="post">
+    <form class="row" action="{{ action('AdminPostController@storePost', $post->id) }}" enctype="multipart/form-data" method="post">
         <div class="col-2 admin-bar">
             <nav class="nav flex-column">
                 <a class="nav-link" href="/posts">Посты</a>
@@ -40,8 +40,8 @@
                         </select>
                     </div>
                     <button class="btn btn-secondary" type="submit">Сохранить</button>
-                    <a class="btn btn-danger" href="{{ action('PostController@deletePost', $post->id) }}">Удалить</a>
-                    <a class="btn btn-info" href="{{ action('PostController@addPost') }}">Новый</a>
+                    <a class="btn btn-danger" href="{{ action('AdminPostController@deletePost', $post->id) }}">Удалить</a>
+                    <a class="btn btn-info" href="{{ action('AdminPostController@addPost') }}">Новый</a>
                 </div>
             </div>
             <div class="card bg-light mb-3">
@@ -59,7 +59,7 @@
                 <div class="card-body">
                     @foreach ($categories as $category)
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" name="category[]" value="{{ $category->slug }}" id="customCheck{{ $loop->iteration }}">
+                            <input type="checkbox" @if (in_array($category->slug, $postcat)) checked @endif class="custom-control-input" name="category[]" value="{{ $category->slug }}" id="customCheck{{ $loop->iteration }}">
                             <label class="custom-control-label" for="customCheck{{ $loop->iteration }}">{{ $category->name }}</label>
                         </div>
                     @endforeach
