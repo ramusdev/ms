@@ -29,9 +29,9 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
+        //dd($post->comment());
+        
         return view('front/front-show-post', ['post' => $post]);
     }
-
-    
 
 }

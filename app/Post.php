@@ -24,12 +24,19 @@ class Post extends Model
     	'deleted_at'
     ];
 
-    public function image() {
+    public function image()
+    {
         return $this->hasOne('App\Image', 'post_id');
     }
 
-    public function category() {
+    public function category()
+    {
         return $this->belongsToMany('App\Category');
+    }
+
+    public function comment()
+    {
+        return $this->morphMany('App\Comment', 'commentable')->where('parent_id', 0);
     }
    
 }

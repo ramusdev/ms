@@ -21,8 +21,14 @@ class Image extends Model
         'deleted_at'
     ];
 
-    public function post() {
+    public function post() 
+    {
         return $this->belongsTo('App\Post');
+    }
+
+    public function comment() 
+    {
+        return $this->morphMany('App\Comment', 'commentable');
     }
 
 }
