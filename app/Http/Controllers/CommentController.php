@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Post;
+use App\Image;
 use App\Comment;
 
 class CommentController extends Controller
@@ -12,33 +14,26 @@ class CommentController extends Controller
      * Store comment
      * 
      */
-    public function storeComment(Request $request, $post_id)
+    public function storeComment(Request $request, $modelName, $postId)
     {
-        /*
-        $comment = Comment::firstOrCreate([
-            'id' => $post_id,
-            'parent_id' => 0,
-            'content' => $request->content,
-            'status' => 'published'
-        ]);
-        */
-
-        $post = Post::findOrFail($post_id);
-
+        $modelClass = Relation::getMorphedModel($modelName);
+        $model = $modelClass::findOrFail($postId);
+        
         $comment = new Comment([
             'parent_id' => 0,
             'content' => $request->content,
             'status' => 'published'
         ]);
-
-        $post->comment()->save($comment);
+        
+        $model->comment()->save($comment);
 
         return redirect()->back();
     }
 
-    public function storeReplyComment(Request $request, $post_id)
+    public function storeReplyComment(Request $request, $modelName, $postId)
     {
-        $post = Post::findOrFail($post_id);
+        $modelClass = Relation::getMorphedModel($modelName);
+        $model = $modelClass::findOrFail($postId);
 
         $comment = new Comment([
             'parent_id' => $request->parent,
@@ -46,9 +41,8 @@ class CommentController extends Controller
             'status' => 'published'
         ]);
 
-        $post->comment()->save($comment);
+        $model->comment()->save($comment);
 
         return redirect()->back();
-
     }
 }

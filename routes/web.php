@@ -25,8 +25,8 @@ Route::get('/images', 'ImageController@allImages');
 Route::get('/image/{id}', 'ImageController@showImage');
 
 // Comments
-Route::post('/comment/store/{post_id}', 'CommentController@storeComment');
-Route::post('/comment/store/reply/{post_id}', 'CommentController@storeReplyComment');
+Route::post('/comment/store/{model}/{post_id}', 'CommentController@storeComment');
+Route::post('/comment/store/reply/{model}/{post_id}', 'CommentController@storeReplyComment');
 
 // Admin posts
 Route::get('/admin/posts', 'AdminPostController@allPosts');

@@ -16,3 +16,7 @@
 .admin-all-images {
     width: 100px;
 }
+
+.comment-form-reply {
+    display: none;
+}

@@ -16,35 +16,7 @@
                     <p>{{ $post->content }}</p>
                 </div>
             </div>
-            <!--
-            <div class="comment">
-                <form action="{{ action('CommentController@storeComment', $post->id) }}" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label for="textareaComment">Комментарий</label>
-                        <textarea class="form-control" name="content" placeholder="Введите ваш комментарий"></textarea>
-                    </div>
-                    <button class="btn btn-secondary" type="submit">Добавить</button>
-                </form>
-            </div>
-            <div class="comment-reply">
-                <form action="{{ action('CommentController@storeReplyComment', $post->id) }}" method="post">
-                    @csrf
-                    <div class="form-group">
-                        <label for="textareaComment">Ответ на комментарий</label>
-                        <textarea class="form-control" name="content" placeholder="Введите ваш комментарий"></textarea>
-                    </div>
-                    <button class="btn btn-secondary" type="submit">Добавить</button>
-                    <input type="hidden" name="parent" value="2">
-                </form>
-            </div>
-            -->
-
-            @include('partials.comment_replies', ['comments' => $post->comment])
-                     
-            <!--
-            @include('partials.comment_replies', ['comments' => $post->comment])
-            -->
+            @include('partials.comment_replies', ['comments' => $post->comment, 'post' => $post])
         </div>
         <div class="col-3">
             Sidebar
