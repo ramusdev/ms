@@ -36,7 +36,8 @@ class Post extends Model
 
     public function comment()
     {
-        return $this->morphMany('App\Comment', 'commentable')->where('parent_id', 0);
+        //return $this->morphMany('App\Comment', 'commentable')->where('parent_id', 0);
+        return $this->morphMany('App\Comment', 'commentable');
     }
    
 }

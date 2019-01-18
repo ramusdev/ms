@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
 use App\Post;
 
@@ -29,7 +30,25 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        return view('front/front-show-post', ['post' => $post]);
+        $comments = $this->buildThree($post->comment);
+
+        //return view('front/front-show-post', ['post' => $post]);
+    }
+
+    public function buildThree($flat, $root = 0)
+    {
+        $collection = new Collection();
+
+        foreach($flat as $key => $value) {
+
+            $collection->push($value);
+
+            if ($value->id == $root) {
+                //
+            }
+        }
+
+        dd($collection);
     }
 
 }
