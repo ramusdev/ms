@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
+use App\Helpers\Helper;
 use App\Post;
 
 class PostController extends Controller
@@ -29,34 +30,9 @@ class PostController extends Controller
     public function showPost($id)
     {
         $post = Post::findOrFail($id);
+        $comments = Helper::buildThree($post->comment);
 
-        $comments = $this->buildThree($post->comment);
-        dd($comments);
-
-        //return view('front/front-show-post', ['post' => $post]);
-    }
-
-    public function buildThree($flat, $root = 0)
-    {
-        $collection = new Collection();
-
-        foreach($flat as $key => $value) {
-
-            //$comment = $value->put('parent', 'inserted item parent');
-            //$collection->push($comment);
-            //$value->child = 'this is child';
-            //print_r($value);
-
-            if ($value->parent_id == $root) {
-                //$collection->push(($this->buildThree($flat, $value->parent_id));
-                $this->buildThree($flat, $value->parent_id);
-                $collection->push($value);
-            }
-
-        }
-
-        return $collection;
-        //dd($collection);
+        return view('front/front-show-post', ['post' => $post, 'comments' => $comments]);
     }
 
 }

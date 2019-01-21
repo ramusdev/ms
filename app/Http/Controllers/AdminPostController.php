@@ -57,10 +57,13 @@ class AdminPostController extends Controller
     {
         $post = Post::findOrFail($id);
         $categories = Category::all();
+        $comments = $this->buildThree($post->comment);
+
+        dd($comments);
 
         $postcat = $post->category()->pluck('slug')->toArray();
         
-        return view('post-edit', ['post' => $post, 'categories' => $categories, 'postcat' => $postcat]);
+        return view('post-edit', ['post' => $post, 'categories' => $categories, 'postcat' => $postcat, 'comments' => $comments]);
     }
 
     /**

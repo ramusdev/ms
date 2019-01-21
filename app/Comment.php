@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     protected $table = 'comments';
-    
-    protected $appends = [
-        'child'
-    ];
 
+    /*
+    protected $attributes = [
+        'child' => ''
+    ];
+    */
+    
     protected $fillable = [
         'content',
         'parent_id',

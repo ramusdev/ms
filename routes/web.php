@@ -46,6 +46,11 @@ ROute::get('/admin/category/edit/{id}', 'CategoryController@editCategory');
 Route::get('/admin/images', 'AdminImageController@allImages');
 Route::get('/admin/image/delete/{id}', 'AdminImageController@deleteImage');
 
+// Admin comments
+Route::get('/admin/comments', 'AdminCommentController@allComments');
+Route::get('/admin/comment/delete/{id}', 'AdminCommentController@deleteComment');
+Route::get('/admin/comment/edit/{id}', 'AdminCommentController@editComment');
+
 // Admin users
 //Route::get('admin/users', 'UserController@allUsers');
 

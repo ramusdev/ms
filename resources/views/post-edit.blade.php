@@ -28,6 +28,12 @@
                 <label for="textareaContent">Контент</label>
                 <textarea class="form-control" rows="10" name="content" id="textareaContent" placeholder="Описание">{{ $post->content }}</textarea>
             </div>
+            <div class="card bg-light">
+                <div class="card-header">Комментарии</div>
+                <div class="card-body">
+                    Comments
+                </div>
+            </div>
         </div>
         <div class="col-3">
             <div class="card bg-light mb-3">

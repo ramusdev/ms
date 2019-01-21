@@ -23,7 +23,7 @@
                     </form>
                 </div>
             </div>
-            @include('partials.comment_replies_child', ['comments' => $comment->replies, 'post' => $post])
+            @include('partials.comment_replies_child', ['post' => $post, 'comments' => $comment->child])
         </div>
     @endforeach
 </div>

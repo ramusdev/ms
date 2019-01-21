@@ -16,7 +16,7 @@
                     <p>{{ $post->content }}</p>
                 </div>
             </div>
-            @include('partials.comment_replies', ['comments' => $post->comment, 'post' => $post])
+            @include('partials.comment_replies', ['post' => $post, 'comments' => $comments])
         </div>
         <div class="col-3">
             Sidebar
