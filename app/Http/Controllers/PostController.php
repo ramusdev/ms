@@ -31,6 +31,7 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
 
         $comments = $this->buildThree($post->comment);
+        dd($comments);
 
         //return view('front/front-show-post', ['post' => $post]);
     }
@@ -41,14 +42,21 @@ class PostController extends Controller
 
         foreach($flat as $key => $value) {
 
-            $collection->push($value);
+            //$comment = $value->put('parent', 'inserted item parent');
+            //$collection->push($comment);
+            //$value->child = 'this is child';
+            //print_r($value);
 
-            if ($value->id == $root) {
-                //
+            if ($value->parent_id == $root) {
+                //$collection->push(($this->buildThree($flat, $value->parent_id));
+                $this->buildThree($flat, $value->parent_id);
+                $collection->push($value);
             }
+
         }
 
-        dd($collection);
+        return $collection;
+        //dd($collection);
     }
 
 }
