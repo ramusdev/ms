@@ -1,5 +1,4 @@
 <div class="comments">
-    <h4 class="mb-2">Comments</h4>
     @foreach( $comments as $comment )
         <div class="comment mb-2 row">
             <div class="comment-avatar col-md-1 col-sm-2 text-center pr-1">
@@ -23,7 +22,7 @@
                     </form>
                 </div>
             </div>
-            @include('partials.comment_replies_child', ['post' => $post, 'comments' => $comment->child])
+            @include('partials.comment_admin_child', ['post' => $post, 'comments' => $comment->child])
         </div>
     @endforeach
 </div>

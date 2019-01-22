@@ -2,7 +2,9 @@
 
 namespace App\Helpers;
 
-class Helpers
+use Illuminate\Support\Collection;
+
+class Helper
 {
     /**
      * Helper function three builder
@@ -14,7 +16,7 @@ class Helpers
 
         foreach($flat as $key => $value) {
             if ($value->parent_id == $root) {
-                $value->child = $this->buildThree($flat, $value->id);
+                $value->child = Helper::buildThree($flat, $value->id);
                 $collection->push($value);
             }
         }

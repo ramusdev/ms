@@ -10,7 +10,7 @@ return array(
     'App\\Comment' => $baseDir . '/app/Comment.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
-    'App\\Helpers\\Helpers' => $baseDir . '/app/Helpers/Helper.php',
+    'App\\Helpers\\Helper' => $baseDir . '/app/Helpers/Helper.php',
     'App\\Http\\Controllers\\AdminCommentController' => $baseDir . '/app/Http/Controllers/AdminCommentController.php',
     'App\\Http\\Controllers\\AdminImageController' => $baseDir . '/app/Http/Controllers/AdminImageController.php',
     'App\\Http\\Controllers\\AdminPostController' => $baseDir . '/app/Http/Controllers/AdminPostController.php',

@@ -25,9 +25,11 @@ class Comment extends Model
         return $this->morphTo();
     }
 
+    /*
     public function replies()
     {
         return $this->hasMany('App\Comment', 'parent_id');
     }
+    */
 
 }

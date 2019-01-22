@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
+use App\Helpers\Helper;
 use App\Post;
 use App\Category;
 use App\Image;
@@ -57,9 +58,7 @@ class AdminPostController extends Controller
     {
         $post = Post::findOrFail($id);
         $categories = Category::all();
-        $comments = $this->buildThree($post->comment);
-
-        dd($comments);
+        $comments = $post->comment;
 
         $postcat = $post->category()->pluck('slug')->toArray();
         

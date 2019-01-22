@@ -39,5 +39,10 @@ class Post extends Model
         //return $this->morphMany('App\Comment', 'commentable')->where('parent_id', 0);
         return $this->morphMany('App\Comment', 'commentable');
     }
+
+    public function commentFront()
+    {
+        return $this->morphMany('App\Comment', 'commentable')->where('status', 'published');
+    }
    
 }

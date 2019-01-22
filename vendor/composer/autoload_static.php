@@ -450,7 +450,7 @@ class ComposerStaticInit47700f24b1658b7edc046ac2f0efda0c
         'App\\Comment' => __DIR__ . '/../..' . '/app/Comment.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-        'App\\Helpers\\Helpers' => __DIR__ . '/../..' . '/app/Helpers/Helper.php',
+        'App\\Helpers\\Helper' => __DIR__ . '/../..' . '/app/Helpers/Helper.php',
         'App\\Http\\Controllers\\AdminCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminCommentController.php',
         'App\\Http\\Controllers\\AdminImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminImageController.php',
         'App\\Http\\Controllers\\AdminPostController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminPostController.php',

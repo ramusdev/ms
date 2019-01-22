@@ -50,6 +50,7 @@ Route::get('/admin/image/delete/{id}', 'AdminImageController@deleteImage');
 Route::get('/admin/comments', 'AdminCommentController@allComments');
 Route::get('/admin/comment/delete/{id}', 'AdminCommentController@deleteComment');
 Route::get('/admin/comment/edit/{id}', 'AdminCommentController@editComment');
+Route::post('/admin/comment/store/{id?}', 'AdminCommentController@storeComment');
 
 // Admin users
 //Route::get('admin/users', 'UserController@allUsers');
