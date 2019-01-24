@@ -27,6 +27,14 @@ class AdminCommentController extends Controller
     public function deleteComment($id)
     {
         $comment = Comment::findOrFail($id);
+
+        // Rebuild comment
+        $childrens = Comment::where('parent_id', $comment->id)->get();
+        foreach ($childrens as $key => $value) {
+            $value->parent_id = $comment->parent_id;
+            $value->save();
+        }
+
         $comment->delete();
 
         return redirect()->back();
