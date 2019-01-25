@@ -24,7 +24,7 @@
 						<tr>
 							<th scope="row">{{ $loop->iteration }}</th>
                             <th>
-                                <img class="rounded admin-all-images" src="{{ url('storage/' . $image->path ) }}">
+                                <a href="{{ action('AdminImageController@editImage', $image->id) }}"><img class="rounded admin-all-images" src="{{ url('storage/' . $image->path ) }}"></a>
                             </th>
 							<td><a href="{{ url('storage/' . $image->path ) }}">{{ $image->title }}</a></td>
 							<td>{{ $image->created_at->format('d.m.Y') }}</td>

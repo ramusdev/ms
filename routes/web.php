@@ -45,12 +45,14 @@ ROute::get('/admin/category/edit/{id}', 'CategoryController@editCategory');
 // Admin images
 Route::get('/admin/images', 'AdminImageController@allImages');
 Route::get('/admin/image/delete/{id}', 'AdminImageController@deleteImage');
+Route::get('/admin/image/edit/{id}', 'AdminImageController@editImage');
 
 // Admin comments
 Route::get('/admin/comments', 'AdminCommentController@allComments');
 Route::get('/admin/comment/delete/{id}', 'AdminCommentController@deleteComment');
 Route::get('/admin/comment/edit/{id}', 'AdminCommentController@editComment');
-Route::post('/admin/comment/store/{id?}', 'AdminCommentController@storeComment');
+Route::post('/admin/comment/store/{model}/{post_id}', 'AdminCommentController@storeComment');
+Route::get('/admin/comment/reply/{model}/{comment_id}', 'AdminCommentController@replyComment');
 
 // Admin users
 //Route::get('admin/users', 'UserController@allUsers');

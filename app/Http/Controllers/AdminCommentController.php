@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use App\Post;
 use App\Comment;
 
@@ -40,28 +41,39 @@ class AdminCommentController extends Controller
         return redirect()->back();
     }
 
-    public function storeComment(Request $request, $id = 0)
+    /**
+     * Reply to comment
+     * 
+     */
+    public function replyComment($modelName, $commentParentId)
     {
-        /*
-        $comment = Comment::firstOrCreate([
-            'id' => $id,
+        $modelClass = Relation::getMorphedModel($modelName);
+
+        $commentParent = Comment::findOrFail($commentParentId);
+        $model = $modelClass::findOrfail($commentParent->commentable_id);
+
+        return view('admin-comment-reply', ['post' => $model, 'comment_parent' => $commentParent]);
+    }
+
+    /**
+     * Store comment
+     * 
+     */
+    public function storeComment(Request $request, $modelName, $postId)
+    {
+        $comment = new Comment([
             'status' => $request->status,
             'content' => $request->content,
-            'parent_id' => 0
+            'parent_id' => $request->parent_id
         ]);
-        */
 
-        $comment = Comment::findOrFail($id);
-        $comment->status = $request->status;
-        $comment->content = $request->content;
+        $modelClass = Relation::getMorphedModel($modelName);
+        $model = $modelClass::findOrFail($postId);
 
-        $post = Post::findOrFail($comment->commentable_id);
-        //dd($post);
-
-        if ($post->comment()->save($comment)) {
+        if ($model->comment()->save($comment)) {
             $message = 'Комментарий сохранен';
         }
 
-        return redirect()->action('AdminCommentController@editComment', ['id' => $comment->id])->with('message', $message);
+        //return redirect()->action('AdminPostController@editPost', ['id' => $model->id])->with('message', $message);
     }
 }

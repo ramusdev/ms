@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\Helper;
 use App\Image;
+use App\Comment;
 
 class ImageController extends Controller
 {
@@ -25,7 +27,8 @@ class ImageController extends Controller
     public function showImage($id)
     {
         $image = Image::findOrFail($id);
+        $comments = Helper::buildThree($image->comment);
 
-        return view('/front/front-show-image', ['image' => $image]);
+        return view('/front/front-show-image', ['image' => $image, 'comments' => $comments]);
     }
 }

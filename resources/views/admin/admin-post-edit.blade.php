@@ -40,7 +40,7 @@
                                         @if ( $comment->status == 'pending' )<span class="badge badge-warning">Снят</span>@endif
                                     </div>
                                     <a href="{{ action('AdminCommentController@editComment', $comment->id) }}" class="small">Редактировать</a>
-                                    <a href="{{ action('AdminCommentController@editComment', $comment->id) }}" class="small text-info">Ответить</a>
+                                    <a href="{{ action('AdminCommentController@replyComment', ['post', $comment->id]) }}" class="small text-info">Ответить</a>
                                     <a href="{{ action('AdminCommentController@deleteComment', $comment->id) }}" class="small text-danger">Удалить</a>
                                     <div class="comment-body mb-1">
                                         <div>{{ $comment->content }}</div>

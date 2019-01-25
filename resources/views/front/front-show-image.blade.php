@@ -14,7 +14,7 @@
                     <p>Дата публикации:: {{ $image->created_at->format('d.m.Y') }}</p>
                 </div>
             </div>
-            @include('partials.comment_replies', ['comments' => $image->comment, 'post' => $image])
+            @include('partials.comment_replies', ['post' => $image, 'comments' => $comments])
         </div>
         <div class="col-3">
             Sidebar
