@@ -14,33 +14,17 @@ class CommentController extends Controller
      * Store comment
      * 
      */
-    public function storeComment(Request $request, $modelName, $postId)
+    public function storeComment(Request $request, $modelName, $modelId)
     {
         $modelClass = Relation::getMorphedModel($modelName);
-        $model = $modelClass::findOrFail($postId);
+        $model = $modelClass::findOrFail($modelId);
         
         $comment = new Comment([
-            'parent_id' => 0,
             'content' => $request->content,
-            'status' => 'published'
+            'status' => 'published',
+            'parent_id' => $request->parent_id ? $request->parent_id : 0
         ]);
         
-        $model->comment()->save($comment);
-
-        return redirect()->back();
-    }
-
-    public function storeReplyComment(Request $request, $modelName, $postId)
-    {
-        $modelClass = Relation::getMorphedModel($modelName);
-        $model = $modelClass::findOrFail($postId);
-
-        $comment = new Comment([
-            'parent_id' => $request->parent,
-            'content' => $request->content,
-            'status' => 'published'
-        ]);
-
         $model->comment()->save($comment);
 
         return redirect()->back();

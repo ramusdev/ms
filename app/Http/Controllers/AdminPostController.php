@@ -62,7 +62,7 @@ class AdminPostController extends Controller
 
         $postcat = $post->category()->pluck('slug')->toArray();
         
-        return view('admin/post-edit', ['post' => $post, 'categories' => $categories, 'postcat' => $postcat, 'comments' => $comments]);
+        return view('/admin/admin-post-edit', ['post' => $post, 'categories' => $categories, 'postcat' => $postcat, 'comments' => $comments]);
     }
 
     /**

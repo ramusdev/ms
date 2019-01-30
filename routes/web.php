@@ -26,7 +26,7 @@ Route::get('/image/{id}', 'ImageController@showImage');
 
 // Comments
 Route::post('/comment/store/{model}/{post_id}', 'CommentController@storeComment');
-Route::post('/comment/store/reply/{model}/{post_id}', 'CommentController@storeReplyComment');
+//Route::post('/comment/store/reply/{model}/{post_id}', 'CommentController@storeReplyComment');
 
 // Admin posts
 Route::get('/admin/posts', 'AdminPostController@allPosts');
@@ -51,8 +51,9 @@ Route::get('/admin/image/edit/{id}', 'AdminImageController@editImage');
 Route::get('/admin/comments', 'AdminCommentController@allComments');
 Route::get('/admin/comment/delete/{id}', 'AdminCommentController@deleteComment');
 Route::get('/admin/comment/edit/{id}', 'AdminCommentController@editComment');
-Route::post('/admin/comment/store/{model}/{post_id}', 'AdminCommentController@storeComment');
-Route::get('/admin/comment/reply/{model}/{comment_id}', 'AdminCommentController@replyComment');
+Route::post('/admin/{model}/{model_id}/comment/store/{id?}', 'AdminCommentController@storeComment');
+Route::get('/admin/comment/reply/{id}', 'AdminCommentController@replyComment');
+Route::get('/admin/{model}/{id}/comment/add', 'AdminCommentController@addComment');
 
 // Admin users
 //Route::get('admin/users', 'UserController@allUsers');

@@ -22,7 +22,7 @@
             <div class="form-group">
                 <label for="textareaContent">Комментарий</label>
                 <textarea class="form-control" rows="5" name="content" id="textareaContent" placeholder="Описание"></textarea>
-                <input type="hidden" name="parent_id" value="{{ $comment_parent->id }}">
+                <input type="hidden" name="parent_id" value="{{ $comment->id }}">
             </div>
         </div>
         <div class="col-3 mt-3">
@@ -42,7 +42,7 @@
             <div class="card bg-light mb-3">
                 <div class="card-header">Информация</div>
                 <div class="card-body">
-                    <p>Дата публикации родителя: {{ $comment_parent->created_at->format('d.m.Y') }}</p>
+                    <p>Дата публикации родителя: {{ $comment->created_at->format('d.m.Y') }}</p>
                     <p>Коментарий поста: <a href="{{ url('post/' . $post->id) }}">{{ url('post/' . $post->id) }}</a></p>
                 </div>
             </div>

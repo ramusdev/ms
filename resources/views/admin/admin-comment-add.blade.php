@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-	<form class="row" action="{{ action('AdminCommentController@storeComment', $comment->id)}}" enctype="multipart/form-data" method="post">
+	<form class="row" action="{{ action('AdminCommentController@storeComment', [$model, $id]) }}" enctype="multipart/form-data" method="post">
         @csrf
         <div class="col-2 admin-bar">
             <nav class="nav flex-column">
@@ -13,16 +13,15 @@
             </nav>
         </div>
         <div class="col-7">
-            <h5 class="d-inline-block">Редактирование комментария</h5>
+            <h5 class="d-inline-block">Добавить комментарий</h5>
             @if (session('message')) 
                 <div class="alert alert-success">
                     {{ session('message') }}
                 </div>
-            @endif    
+            @endif
             <div class="form-group">
                 <label for="textareaContent">Комментарий</label>
-                <textarea class="form-control" rows="5" name="content" id="textareaContent" placeholder="Описание">{{ $comment->content }}</textarea>
-                <input type="hidden" name="parent_id" value="">
+                <textarea class="form-control" rows="5" name="content" id="textareaContent" placeholder="Описание"></textarea>
             </div>
         </div>
         <div class="col-3 mt-3">
@@ -31,9 +30,9 @@
                 <div class="card-body">
                     <div class="form-group">
                         <select class="form-control" name="status">
-                            <option @if ($comment->status == 'published') selected @endif value="published">Опубликовано</option>
-                            <option @if ($comment->status == 'pending') selected $@endif value="pending">Снято</option>
-                            <option @if ($comment->status == 'spam') selected $@endif value="spam">Спам</option>
+                            <option value="published">Опубликовано</option>
+                            <option value="pending">Снято</option>
+                            <option value="spam">Спам</option>
                         </select>
                     </div>
                     <button class="btn btn-secondary" type="submit">Сохранить</button>
@@ -42,8 +41,6 @@
             <div class="card bg-light mb-3">
                 <div class="card-header">Информация</div>
                 <div class="card-body">
-                    <p>Дата публикации: {{ $comment->created_at->format('d.m.Y') }}</p>
-                    <p>Коментарий поста: <a href="{{ url('post/' . $post->id) }}">{{ url('post/' . $post->id) }}</a></p>
                 </div>
             </div>
         </div>  

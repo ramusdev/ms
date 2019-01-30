@@ -29,7 +29,7 @@
                 <textarea class="form-control" rows="10" name="content" id="textareaContent" placeholder="Описание">{{ $post->content }}</textarea>
             </div>
             <div class="card bg-light mb-3">
-                <div class="card-header">Комментарии</div>
+                <div class="card-header">Комментарии <a href="{{ action('AdminCommentController@addComment', ['post', $post->id]) }}" class="btn btn-info btn-sm">Новый</a></div>
                 <div class="card-body">
                     <div class="comments">
                         @foreach( $comments as $comment )
@@ -40,7 +40,7 @@
                                         @if ( $comment->status == 'pending' )<span class="badge badge-warning">Снят</span>@endif
                                     </div>
                                     <a href="{{ action('AdminCommentController@editComment', $comment->id) }}" class="small">Редактировать</a>
-                                    <a href="{{ action('AdminCommentController@replyComment', ['post', $comment->id]) }}" class="small text-info">Ответить</a>
+                                    <a href="{{ action('AdminCommentController@replyComment', $comment->id) }}" class="small text-info">Ответить</a>
                                     <a href="{{ action('AdminCommentController@deleteComment', $comment->id) }}" class="small text-danger">Удалить</a>
                                     <div class="comment-body mb-1">
                                         <div>{{ $comment->content }}</div>
@@ -72,7 +72,7 @@
                 <div class="card-body">
                     <p class="card-text">Дата публикации: {{ $post->created_at->format('d.m.Y') }}</p>
                     <p class="card-text">Пост: <a href="{{ url()->current() }}">{{ url()->current() }}</a></p>
-                    <p class="card-text">Комментарие: {{ $comments->count() }}</p>
+                    <p class="card-text">Комментарии: {{ $comments->count() }}</p>
                     @if ($post->image()->exists())
                         <p class="card-text">Миниатюра: {{ url('storage/' . $post->image->path) }}</p>
                     @endif

@@ -16,9 +16,10 @@ class AdminCommentController extends Controller
     public function editComment($id)
     {
         $comment = Comment::findOrFail($id);
-        $post = Post::findOrFail($comment->commentable_id);
 
-        return view('admin-comment-edit', ['post' => $post, 'comment' => $comment]);
+        $model = $comment->commentable;
+
+        return view('/admin/admin-comment-edit', ['post' => $model, 'comment' => $comment]);
     }
 
     /**
@@ -45,35 +46,48 @@ class AdminCommentController extends Controller
      * Reply to comment
      * 
      */
-    public function replyComment($modelName, $commentParentId)
+    public function replyComment($id)
     {
-        $modelClass = Relation::getMorphedModel($modelName);
+        //$modelClass = Relation::getMorphedModel($modelName);
+        //$commentParent = Comment::findOrFail($commentParentId);
+        //$model = $modelClass::findOrfail($commentParent->commentable_id);
 
-        $commentParent = Comment::findOrFail($commentParentId);
-        $model = $modelClass::findOrfail($commentParent->commentable_id);
+        $comment = Comment::findOrFail($id);
+        $model  = $comment->commentable;
 
-        return view('admin-comment-reply', ['post' => $model, 'comment_parent' => $commentParent]);
+        return view('/admin/admin-comment-reply', ['post' => $model, 'comment' => $comment]);
+    }
+
+    /**
+     * Add comment
+     * 
+     */
+    public function addComment($modelName, $id)
+    {
+        return view('/admin/admin-comment-add', ['model' => $modelName, 'id' => $id]);
     }
 
     /**
      * Store comment
      * 
      */
-    public function storeComment(Request $request, $modelName, $postId)
-    {
-        $comment = new Comment([
-            'status' => $request->status,
-            'content' => $request->content,
-            'parent_id' => $request->parent_id
+    public function storeComment(Request $request, $modelName, $modelId, $id = 0)
+    {   
+        $comment = Comment::firstOrNew([
+            'id' => $id,
         ]);
 
+        $comment->status = $request->status;
+        $comment->content = $request->content;
+        $comment->parent_id = $request->parent_id ? $request->parent_id : 0;
+
         $modelClass = Relation::getMorphedModel($modelName);
-        $model = $modelClass::findOrFail($postId);
+        $model = $modelClass::findOrFail($modelId);
 
         if ($model->comment()->save($comment)) {
-            $message = 'Комментарий сохранен';
+            $message = 'Комментарий успешно добавлен';
         }
 
-        //return redirect()->action('AdminPostController@editPost', ['id' => $model->id])->with('message', $message);
+        return redirect()->action('AdminPostController@editPost', ['id' => $model->id])->with('message', $message);
     }
 }

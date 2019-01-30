@@ -12,14 +12,14 @@
                     <a href="" class="text-right small reply-to-comment">Reply</a>
                 </div>
                 <div class="comment-form-reply mb-3">
-                    <form action="{{ action('CommentController@storeReplyComment', [strtolower(class_basename($post)), $post->id]) }}" method="post">
+                    <form action="{{ action('CommentController@storeComment', [strtolower(class_basename($post)), $post->id]) }}" method="post">
                         @csrf
                         <div class="form-group">
                             <label for="textareaComment">Ответ на комментарий</label>
                             <textarea class="form-control" name="content" placeholder="Введите ваш комментарий"></textarea>
                         </div>
                         <button class="btn btn-secondary" type="submit">Добавить</button>
-                        <input type="hidden" name="parent" value="{{ $comment->id }}">
+                        <input type="hidden" name="parent_id" value="{{ $comment->id }}">
                     </form>
                 </div>
             </div>
