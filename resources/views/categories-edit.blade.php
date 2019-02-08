@@ -12,7 +12,7 @@
             </nav>
         </div>
         @csrf
-        <form class="col-5" action="{{ action('CategoryController@storeCategory', $category->id ) }}" method="post">
+        <form class="col-5" action="{{ action('AdminCategoryController@storeCategory', $category->id ) }}" method="post">
             @csrf
             <h5 class="d-inline-block">Редактирование категории</h5>
             @if (session('message')) 
@@ -40,8 +40,8 @@
 							<td><a href="">{{ $category->name }}</a></td>
 							<td>{{ $category->created_at->format('d.m.Y') }}</td>
 							<td>
-								<a class="btn btn-outline-secondary btn-sm" href="{{ action('CategoryController@editCategory', $category->id) }}" role="button">Редактирование</a>
-								<a class="btn btn-outline-danger btn-sm" href="{{ action('CategoryController@deleteCategory', $category->id) }}" role="button">Удаление</a>
+								<a class="btn btn-outline-secondary btn-sm" href="{{ action('AdminCategoryController@editCategory', $category->id) }}" role="button">Редактирование</a>
+								<a class="btn btn-outline-danger btn-sm" href="{{ action('AdminCategoryController@deleteCategory', $category->id) }}" role="button">Удаление</a>
 							</td>
 						</tr>
 					@endforeach

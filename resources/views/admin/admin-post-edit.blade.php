@@ -32,7 +32,7 @@
                 <div class="card-header">Комментарии <a href="{{ action('AdminCommentController@addComment', ['post', $post->id]) }}" class="btn btn-info btn-sm">Новый</a></div>
                 <div class="card-body">
                     <div class="comments">
-                        @foreach( $comments as $comment )
+                        @foreach( $post->comment as $comment )
                             <div class="comment mb-3 row">
                                 <div class="comment-content col-md-11 col-sm-10">
                                     <div class="small">Автор: <a href="">admin</a> {{ $comment->created_at->format('d.m.Y') }}
@@ -72,7 +72,7 @@
                 <div class="card-body">
                     <p class="card-text">Дата публикации: {{ $post->created_at->format('d.m.Y') }}</p>
                     <p class="card-text">Пост: <a href="{{ url()->current() }}">{{ url()->current() }}</a></p>
-                    <p class="card-text">Комментарии: {{ $comments->count() }}</p>
+                    <p class="card-text">Комментарии: {{ $post->comment->count() }}</p>
                     @if ($post->image()->exists())
                         <p class="card-text">Миниатюра: {{ url('storage/' . $post->image->path) }}</p>
                     @endif

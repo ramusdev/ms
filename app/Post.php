@@ -18,11 +18,16 @@ class Post extends Model
         'status'
     ];
 
-    protected $date = [
+    protected $dates = [
     	'created_at',
     	'updated_at',
     	'deleted_at'
     ];
+
+    public function editPath()
+    {
+        return 'AdminPostController@editPost';
+    }
 
     public function image()
     {

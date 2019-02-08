@@ -13,7 +13,7 @@ class Category extends Model
         'slug'
     ];
 
-    protected $date = [
+    protected $dates = [
         'created_at',
         'updated_at',
         'deleted_at'

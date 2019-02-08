@@ -26,7 +26,10 @@ Route::get('/image/{id}', 'ImageController@showImage');
 
 // Comments
 Route::post('/comment/store/{model}/{post_id}', 'CommentController@storeComment');
-//Route::post('/comment/store/reply/{model}/{post_id}', 'CommentController@storeReplyComment');
+
+// Admin main
+Route::get('/admin', 'AdminMainController@all');
+//Route::get('/admin', 'AdminMainController@all')->middleware('auth');
 
 // Admin posts
 Route::get('/admin/posts', 'AdminPostController@allPosts');
@@ -36,11 +39,11 @@ Route::post('/admin/post/store/{id?}', 'AdminPostController@storePost');
 Route::get('/admin/post/add', 'AdminPostController@addPost');
 
 // Admin categories
-Route::get('/admin/categories', 'CategoryController@allCategories');
-Route::post('/admin/category/add/{id}', 'CategoryController@addCategory');
-Route::get('/admin/category/delete/{id}', 'CategoryController@deleteCategory');
-Route::post('/admin/category/store/{id?}', 'CategoryController@storeCategory');
-ROute::get('/admin/category/edit/{id}', 'CategoryController@editCategory');
+Route::get('/admin/categories', 'AdminCategoryController@allCategories');
+Route::post('/admin/category/add/{id}', 'AdminCategoryController@addCategory');
+Route::get('/admin/category/delete/{id}', 'AdminCategoryController@deleteCategory');
+Route::post('/admin/category/store/{id?}', 'AdminCategoryController@storeCategory');
+ROute::get('/admin/category/edit/{id}', 'AdminCategoryController@editCategory');
 
 // Admin images
 Route::get('/admin/images', 'AdminImageController@allImages');
@@ -54,6 +57,9 @@ Route::get('/admin/comment/edit/{id}', 'AdminCommentController@editComment');
 Route::post('/admin/{model}/{model_id}/comment/store/{id?}', 'AdminCommentController@storeComment');
 Route::get('/admin/comment/reply/{id}', 'AdminCommentController@replyComment');
 Route::get('/admin/{model}/{id}/comment/add', 'AdminCommentController@addComment');
+
+// Cron test route
+//Route::get('/pars/news', 'ParsNewsController@pars');
 
 // Admin users
 //Route::get('admin/users', 'UserController@allUsers');

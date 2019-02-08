@@ -18,7 +18,9 @@ class AdminPostController extends Controller
      */
     public function addPost()
     {
-        return view('post-add');
+        $categories = Category::all();
+
+        return view('admin/admin-post-add', ['categories' => $categories]);
     }
 
     /**
@@ -58,11 +60,10 @@ class AdminPostController extends Controller
     {
         $post = Post::findOrFail($id);
         $categories = Category::all();
-        $comments = $post->comment;
 
         $postcat = $post->category()->pluck('slug')->toArray();
         
-        return view('/admin/admin-post-edit', ['post' => $post, 'categories' => $categories, 'postcat' => $postcat, 'comments' => $comments]);
+        return view('/admin/admin-post-edit', ['post' => $post, 'categories' => $categories, 'postcat' => $postcat]);
     }
 
     /**

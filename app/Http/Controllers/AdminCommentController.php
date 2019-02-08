@@ -16,10 +16,9 @@ class AdminCommentController extends Controller
     public function editComment($id)
     {
         $comment = Comment::findOrFail($id);
-
         $model = $comment->commentable;
 
-        return view('/admin/admin-comment-edit', ['post' => $model, 'comment' => $comment]);
+        return view('/admin/admin-comment-edit', ['model' => $model, 'comment' => $comment]);
     }
 
     /**
@@ -55,7 +54,7 @@ class AdminCommentController extends Controller
         $comment = Comment::findOrFail($id);
         $model  = $comment->commentable;
 
-        return view('/admin/admin-comment-reply', ['post' => $model, 'comment' => $comment]);
+        return view('/admin/admin-comment-reply', ['model' => $model, 'comment' => $comment]);
     }
 
     /**
@@ -88,6 +87,6 @@ class AdminCommentController extends Controller
             $message = 'Комментарий успешно добавлен';
         }
 
-        return redirect()->action('AdminPostController@editPost', ['id' => $model->id])->with('message', $message);
+        return redirect()->action($model->editPath(), ['id' => $model->id])->with('message', $message);
     }
 }

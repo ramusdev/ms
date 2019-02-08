@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
-	<form class="row" action="{{ action('AdminCommentController@storeComment', ['post', $post->id]) }}" enctype="multipart/form-data" method="post">
+	<form class="row" action="{{ action('AdminCommentController@storeComment', [strtolower(class_basename($model)), $model->id]) }}" enctype="multipart/form-data" method="post">
         @csrf
         <div class="col-2 admin-bar">
             <nav class="nav flex-column">
@@ -43,7 +43,7 @@
                 <div class="card-header">Информация</div>
                 <div class="card-body">
                     <p>Дата публикации родителя: {{ $comment->created_at->format('d.m.Y') }}</p>
-                    <p>Коментарий поста: <a href="{{ url('post/' . $post->id) }}">{{ url('post/' . $post->id) }}</a></p>
+                    <p>Коментарий поста: <a href="{{ url('post/' . $model->id) }}">{{ url('post/' . $model->id) }}</a></p>
                 </div>
             </div>
         </div>  

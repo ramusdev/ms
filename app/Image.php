@@ -15,11 +15,16 @@ class Image extends Model
         'post_id'
     ];
 
-    protected $data = [
+    protected $dates = [
         'created_at',
         'update_at',
         'deleted_at'
     ];
+
+    public function editPath()
+    {
+        return 'AdminImageController@editImage';
+    }
 
     public function post() 
     {

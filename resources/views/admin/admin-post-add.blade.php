@@ -44,6 +44,12 @@
             <div class="card bg-light mb-3">
                 <div class="card-header">Категории</div>
                 <div class="card-body">
+                    @foreach ($categories as $category)
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" name="category[]" value="{{ $category->slug }}" id="customCheck{{ $loop->iteration }}">
+                            <label class="custom-control-label" for="customCheck{{ $loop->iteration }}">{{ $category->name }}</label>
+                        </div>
+                    @endforeach
                 </div>
             </div>
             <div class="card bg-light mb-3">
