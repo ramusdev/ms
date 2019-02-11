@@ -24,7 +24,7 @@ Route::get('/post/{id}', 'PostController@showPost');
 Route::get('/images', 'ImageController@allImages');
 Route::get('/image/{id}', 'ImageController@showImage');
 
-// Comments
+// Front comments
 Route::post('/comment/store/{model}/{post_id}', 'CommentController@storeComment');
 
 // Admin main
@@ -51,7 +51,7 @@ Route::get('/admin/image/delete/{id}', 'AdminImageController@deleteImage');
 Route::get('/admin/image/edit/{id}', 'AdminImageController@editImage');
 
 // Admin comments
-Route::get('/admin/comments', 'AdminCommentController@allComments');
+//Route::get('/admin/comments', 'AdminCommentController@allComments');
 Route::get('/admin/comment/delete/{id}', 'AdminCommentController@deleteComment');
 Route::get('/admin/comment/edit/{id}', 'AdminCommentController@editComment');
 Route::post('/admin/{model}/{model_id}/comment/store/{id?}', 'AdminCommentController@storeComment');
@@ -61,12 +61,17 @@ Route::get('/admin/{model}/{id}/comment/add', 'AdminCommentController@addComment
 // Cron test route
 //Route::get('/pars/news', 'ParsNewsController@pars');
 
+// Compress image
+Route::post('/admin/compress/image', 'AdminImageCompress@compress');
+
 // Admin users
 //Route::get('admin/users', 'UserController@allUsers');
 
 // Admin settings
-//Route::get('/admin/settings', 'SettingsController@editSettings');
+Route::get('/admin/settings', 'AdminSettingController@all');
+Route::post('/admin/setting/store/main', 'AdminSettingController@storeMain');
+Route::post('/admin/setting/store/image', 'AdminSettingController@storeImage');
 
-// Auth user routes
+// Auth routes
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

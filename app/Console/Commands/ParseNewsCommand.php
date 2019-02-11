@@ -81,7 +81,7 @@ class ParseNewsCommand extends Command
             $numberOfItems = count($dataInsert);
             ParsNews::insert($dataInsert);
 
-            $this->info('The task was success finished! ' . 'Items inserted: ' . $numberOfItems);
+            $this->info('The task was successfully finished! ' . 'Items inserted: ' . $numberOfItems);
         }
         else {
             $this->info('No items was inserted!');

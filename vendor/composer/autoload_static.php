@@ -31,6 +31,8 @@ class ComposerStaticInit47700f24b1658b7edc046ac2f0efda0c
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '4a1f389d6ce373bda9e57857d3b61c84' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/helpers.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
+        '74ed299072414d276bb7568fe71d5b0c' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify.php',
+        '9635627915aaea7a98d6d14d04ca5b56' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Exception.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -53,6 +55,7 @@ class ComposerStaticInit47700f24b1658b7edc046ac2f0efda0c
         ),
         'T' => 
         array (
+            'Tinify\\' => 7,
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
             'Tests\\' => 6,
         ),
@@ -185,6 +188,10 @@ class ComposerStaticInit47700f24b1658b7edc046ac2f0efda0c
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Tinify\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -454,9 +461,11 @@ class ComposerStaticInit47700f24b1658b7edc046ac2f0efda0c
         'App\\Helpers\\Helper' => __DIR__ . '/../..' . '/app/Helpers/Helper.php',
         'App\\Http\\Controllers\\AdminCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminCategoryController.php',
         'App\\Http\\Controllers\\AdminCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminCommentController.php',
+        'App\\Http\\Controllers\\AdminImageCompress' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminImageCompress.php',
         'App\\Http\\Controllers\\AdminImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminImageController.php',
         'App\\Http\\Controllers\\AdminMainController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminMainController.php',
         'App\\Http\\Controllers\\AdminPostController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminPostController.php',
+        'App\\Http\\Controllers\\AdminSettingController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminSettingController.php',
         'App\\Http\\Controllers\\ApiPostController' => __DIR__ . '/../..' . '/app/Http/Controllers/ApiPostController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -466,7 +475,6 @@ class ComposerStaticInit47700f24b1658b7edc046ac2f0efda0c
         'App\\Http\\Controllers\\CommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
-        'App\\Http\\Controllers\\ParsNewsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ParsNewsController.php',
         'App\\Http\\Controllers\\PostController' => __DIR__ . '/../..' . '/app/Http/Controllers/PostController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -2477,7 +2485,11 @@ class ComposerStaticInit47700f24b1658b7edc046ac2f0efda0c
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV7' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV7.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerTrait' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerTrait.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
+        'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditionsForV7AndPrevious' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditionsForV7AndPrevious.php',
+        'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegrationAssertPostConditionsForV8' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegrationAssertPostConditionsForV8.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
+        'Mockery\\Adapter\\Phpunit\\MockeryTestCaseSetUpForV7AndPrevious' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCaseSetUpForV7AndPrevious.php',
+        'Mockery\\Adapter\\Phpunit\\MockeryTestCaseSetUpForV8' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCaseSetUpForV8.php',
         'Mockery\\Adapter\\Phpunit\\TestListener' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/TestListener.php',
         'Mockery\\ClosureWrapper' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/ClosureWrapper.php',
         'Mockery\\CompositeExpectation' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/CompositeExpectation.php',
@@ -4465,6 +4477,15 @@ class ComposerStaticInit47700f24b1658b7edc046ac2f0efda0c
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'Tinify\\AccountException' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Exception.php',
+        'Tinify\\Client' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Client.php',
+        'Tinify\\ClientException' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Exception.php',
+        'Tinify\\ConnectionException' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Exception.php',
+        'Tinify\\Exception' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Exception.php',
+        'Tinify\\Result' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Result.php',
+        'Tinify\\ResultMeta' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/ResultMeta.php',
+        'Tinify\\ServerException' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Exception.php',
+        'Tinify\\Source' => __DIR__ . '/..' . '/tinify/tinify/lib/Tinify/Source.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',

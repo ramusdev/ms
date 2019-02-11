@@ -21,7 +21,19 @@
                     @foreach ($posts as $post)
                         <div class="card-title small mb-2">
                             <a href="{{ action('AdminPostController@editPost', $post->id) }}">{{ $post->title }}</a>  
-                            <div class="card-date">Дата: {{ $post->created_at->format('d.m.Y') }} <span>Коммент: 0</span></div>
+                            <div class="card-date">Дата: {{ $post->created_at->format('d.m.Y') }} <span>Коммент: {{ $post->comment->count() }}</span></div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-header">Последние комментарии
+                </div>
+                <div class="card-body">
+                    @foreach ($comments as $comment)
+                        <div class="card-title small mb-2">
+                            <a href="{{ action('AdminPostController@editPost', $post->id) }}">{{ $comment->content }}</a>  
+                            <div class="card-date">Дата: {{ $post->created_at->format('d.m.Y') }}</div>
                         </div>
                     @endforeach
                 </div>
@@ -41,7 +53,7 @@
             <div class="card mb-3">
                 <div class="card-header">Новости</div>
                 <div class="card-body">
-                    @foreach ($parsNews as $item)
+                    @foreach ($news as $item)
                         <div class="card-title small mb-2">
                             <a href="{{ $item->link }}">{{ $item->title }}</a>  
                             <div class="card-date">{{ $item->pub_date->format('d.m.Y') }}</div>

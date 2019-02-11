@@ -19,15 +19,18 @@ class AdminMainController extends Controller
         $postAll = Post::all()->count();
         $imageAll = Image::all()->count();
         $commentAll = Comment::all()->count();
-        $parsNews = ParsNews::take(10)->get();
+
+        $news = ParsNews::take(5)->get();
+
+        $comments = Comment::where('status', 'published')
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
 
         $posts = Post::where('status', 'published')
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
-        
-        //dd($posts);
+            ->paginate(5);
 
-        return view('admin/admin-all', compact('postAll', 'imageAll', 'commentAll', 'parsNews', 'posts'));
+        return view('admin/admin-all', compact('postAll', 'imageAll', 'commentAll', 'news', 'posts', 'comments'));
     }
 
 }
