@@ -27,9 +27,21 @@ Route::get('/image/{id}', 'ImageController@showImage');
 // Front comments
 Route::post('/comment/store/{model}/{post_id}', 'CommentController@storeComment');
 
+// Front product
+Route::get('/products', 'ProductController@all');
+Route::get('/product/{id}', 'ProductController@show');
+
 // Admin main
 Route::get('/admin', 'AdminMainController@all');
 //Route::get('/admin', 'AdminMainController@all')->middleware('auth');
+
+// Admin products
+//Route::get('/admin/products', 'AdminProductController@all');
+Route::get('/admin/product/add', 'AdminProductController@add');
+Route::get('/admin/product/edit/{id?}', 'AdminProductController@edit');
+Route::post('/admin/product/store/main/{id?}', 'AdminProductController@storeMain');
+Route::post('/admin/product/store/price/{id?}', 'AdminProductController@storePrice');
+//Route::post('/admin/product/store/image', 'AdminProductController@storeImage');
 
 // Admin posts
 Route::get('/admin/posts', 'AdminPostController@allPosts');
