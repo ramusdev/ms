@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+//use App\Card;
 
 class ProductController extends Controller
 {
@@ -13,8 +14,6 @@ class ProductController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
-        //dd($products);
-
         return view('front/product-all', ['products' => $products]);
     }
 
@@ -23,5 +22,16 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         return view('front/product-show', ['product' => $product]);
+    }
+
+    /**
+     * Add item product card
+     * 
+     */
+    public function addToCard($id)
+    {
+        //Card::add('item id', 'amount', 'price');
+        //Card::remove('item id');
+        //Card::all();
     }
 }
