@@ -3,8 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Library\Services\CartOne;
 
-class CardServiceProvider extends ServiceProvider
+class CartServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -13,7 +14,9 @@ class CardServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind('App\Library\Services\Contracts\CartServiceInterface', function($app) {
+            return new CartOne();
+        });
     }
 
     /**

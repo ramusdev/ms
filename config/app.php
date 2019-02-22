@@ -159,7 +159,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\CardServiceProvider::class
+        App\Providers\CartServiceProvider::class
 
     ],
 
@@ -209,7 +209,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Card' => App\Providers\CardServiceProvider::class
+        'Cart' => App\Providers\CartServiceProvider::class
 
     ],
 
