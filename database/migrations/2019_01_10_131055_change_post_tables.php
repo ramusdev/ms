@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRelationPostsTable extends Migration
+class ChangePostTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddRelationPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('images', function(Blueprint $table) {
-            $table->integer('post_id')->unsigned;
+        Schema::table('posts', function(Blueprint $table) {
+            $table->string('title')->nullable()->change();
+            $table->longText('content')->nullable()->change();
         });
     }
 
@@ -25,6 +26,6 @@ class AddRelationPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('posts');
     }
 }

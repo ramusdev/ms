@@ -13,10 +13,7 @@ class TableChange extends Migration
      */
     public function up()
     {
-        Schema::table('products', function(Blueprint $table) {
-            $table->renameColumn('available', 'status');
-            $table->dropColumn('image_id');
-        });
+        //
     }
 
     /**

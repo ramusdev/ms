@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangePostTable extends Migration
+class ChangeStatusOnTableProduct extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class ChangePostTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function(Blueprint $table) {
-            $table->string('title')->nullable()->change();
-            $table->longText('content')->nullable()->change();
+        Schema::table('products', function(Blueprint $table) {
+            $table->string('status')->change();
         });
     }
 
@@ -26,6 +25,6 @@ class ChangePostTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('products');
     }
 }

@@ -67,7 +67,7 @@ class AdminPostController extends Controller
     }
 
     /**
-     * Store action used for craetion and edition
+     * Store action used for creation and edition
      * 
      */
     public function storePost(Request $request, $id = 0)

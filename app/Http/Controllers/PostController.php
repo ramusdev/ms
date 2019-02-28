@@ -18,23 +18,34 @@ class PostController extends Controller
     public function allPosts(Request $request, CartServiceInterface $cartServiceInterface)
     {
 
-        //$request->session()->put('zname10', 'value 1');
-
-        $all = $request->session()->all();
-
-        dd($all);
         
-        /*
+
+        //$request->session()->put('cook2', 'value 2');
+        //$getData = $request->session()->get('cookss1');
+
+        //$request->session()->forget('cook1');
+        //$request->session()->pull('cook1');
+
+        //$request->session()->put('cook_11', 'value 2');
+        //$request->session()->put('cook_4', 'value 4');
+        //$request->session()->save();
+
+        //$request->session()->put('cook_100', 'value 4');
+        //$request->session()->save();
+
+        //$getData = $request->session()->all();
+        //$getData = $request->session()->get('cook_100');
+
+
         $posts = Post::where('status', 'published')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
-        */
 
         //echo $cardServiceInterface->getCard();
 
         //echo $cartServiceInterface->setCart();
 
-        //return view('front/front-posts', ['posts' => $posts]);
+        return view('front/front-posts', ['posts' => $posts]);
     }
 
     /**

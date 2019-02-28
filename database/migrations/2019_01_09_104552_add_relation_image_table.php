@@ -14,7 +14,7 @@ class AddRelationImageTable extends Migration
     public function up()
     {
         Schema::table('images', function(Blueprint $table) {
-            $table->integer('post_id')->unsigned()->default(1)->change();
+            $table->integer('post_id')->unsigned()->nulled();
             $table->foreign('post_id')->references('id')->on('posts');
         }); 
     }

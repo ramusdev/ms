@@ -30,6 +30,10 @@ Route::post('/comment/store/{model}/{post_id}', 'CommentController@storeComment'
 // Front product
 Route::get('/products', 'ProductController@all');
 Route::get('/product/{id}', 'ProductController@show');
+Route::post('/product/add/{id}', 'ProductController@addToCard');
+
+// Front cart
+Route::get('/cart', 'CartController@show');
 
 // Admin main
 Route::get('/admin', 'AdminMainController@all');

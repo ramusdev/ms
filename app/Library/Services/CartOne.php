@@ -9,52 +9,55 @@
 
  use App\Library\Services\Contracts\CartServiceInterface;
  use Illuminate\Support\Facades\Session;
+ use Illuminate\Support\Carbon;
+ use Illuminate\Support\Collection;
 
  class CartOne implements CartServiceInterface
  {
+  
     /**
-     * Get products existing in cart
+     * Increment product if exists or add
      * 
      */
-    public function getCart()
+    public function incrementOrAddProduct($product)
     {
-        return 'from cart one';
+        $collection = Session::get('products');
+
+        $productExist = $collection->contains('id', $product['id']);
+
+        if ($productExist) {
+            $incremented = $collection->transform(function($value, $key) use ($product) {
+                if ($value['id'] == $product['id']) {
+                    $value['quantity'] = $value['quantity'] + 1;
+                }
+    
+                return $value;
+            });
+        } else {
+            $collection->push($product);
+        }
+        
+        return $collection;
     }
 
     /**
-     * Set product to cart
+     * Set product to card used collation
      * 
      */
-    public function setCart()
+    public function setCart($product)
     {
+        //Session::flush();
+        
+        if (Session::has('products')) {
 
-        $product = [
-            'name' => 'first_name'
-        ];
+            $collection = $this->incrementOrAddProduct($product);
+        } else {
+            $collection = new Collection();
+            $collection->push($product);
+        }
 
-        $product_second = [
-            'id' => '123321',
-            'amount' => '100',
-            'date' => '100219'
-        ];
-
-
-        //if (! Session::has('key'))
-        //{
-            //Session::put('sname_10', $product);
-            //Session::push('sname_3.name', 'second name');
-        //}
-
-        //$data = Session::get('key');
-
-        //session(['snamename1' => 'value of the session name']);
-
-        //$data = Session::all();
-
-
-        dd($data);
-
-        //return 'set cart';
+        Session::put('products', $collection);
     }
+
  }
 

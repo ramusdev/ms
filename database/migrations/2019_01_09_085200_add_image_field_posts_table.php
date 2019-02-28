@@ -25,6 +25,6 @@ class AddImageFieldPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExist('posts');
+        Schema::dropIfExists('posts');
     }
 }

@@ -26,9 +26,6 @@ class NullableCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function(BLueprint $talbe) {
-            $table->string('name')->nullable(false)->change();
-            $table->string('slug')->nullable(false)->change();
-        });
+        Schema::dropIfExists('categories');
     }
 }

@@ -11,7 +11,8 @@
                             <img src="http://via.placeholder.com/200" class="card-img" style="height:200px">
                         </div>
                         <div class="col-md-8">
-                            <form class="card-body" method="post" action="">
+                            <form class="card-body" method="post" action="{{ action('ProductController@addToCard', $product->id) }}">
+                                @csrf
                                 <h5 class="card-title"><a href="{{ action('ProductController@show', $product->id) }}">{{ $product->title }}</a></h5>
                                 <p class="card-text">${{ $product->price }}</p>
                                 <p class="card-text"><small class="text-muted">Добавлен: {{ $product->created_at->format('d.m.Y') }}</small></p>

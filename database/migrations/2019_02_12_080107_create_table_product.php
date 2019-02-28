@@ -19,7 +19,7 @@ class CreateTableProduct extends Migration
             $table->longText('description')->nullable();
             $table->decimal('price', 5, 2)->nullable();
             $table->integer('amount')->nullable();
-            $table->integer('available')->default(0);
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }
