@@ -32,8 +32,20 @@ Route::get('/products', 'ProductController@all');
 Route::get('/product/{id}', 'ProductController@show');
 Route::post('/product/add/{id}', 'ProductController@addToCard');
 
+
+
+
+//Route::group(['middleware' => ['web']], function () {
+    //Route::get('/cart', ['middleware' => 'web'], 'CartController@show'); 
+//});
+
+//Route::get('/cart', 'CartController@show')->middleware('web');
+
+
 // Front cart
 Route::get('/cart', 'CartController@show');
+Route::get('/cart/clear', 'CartController@clear');
+Route::get('/cart/delete/{id}', 'CartController@delete');
 
 // Admin main
 Route::get('/admin', 'AdminMainController@all');
@@ -73,6 +85,10 @@ Route::get('/admin/comment/edit/{id}', 'AdminCommentController@editComment');
 Route::post('/admin/{model}/{model_id}/comment/store/{id?}', 'AdminCommentController@storeComment');
 Route::get('/admin/comment/reply/{id}', 'AdminCommentController@replyComment');
 Route::get('/admin/{model}/{id}/comment/add', 'AdminCommentController@addComment');
+
+// Admim discount
+Route::get('/admin/discounts', 'AdminDiscountController@show');
+Route::post('/admin/discount/add', 'AdminDiscountController@add');
 
 // Cron test route
 //Route::get('/pars/news', 'ParsNewsController@pars');

@@ -16,6 +16,7 @@ return array(
     'App\\Helpers\\Helper' => $baseDir . '/app/Helpers/Helper.php',
     'App\\Http\\Controllers\\AdminCategoryController' => $baseDir . '/app/Http/Controllers/AdminCategoryController.php',
     'App\\Http\\Controllers\\AdminCommentController' => $baseDir . '/app/Http/Controllers/AdminCommentController.php',
+    'App\\Http\\Controllers\\AdminDiscountController' => $baseDir . '/app/Http/Controllers/AdminDiscountController.php',
     'App\\Http\\Controllers\\AdminImageCompress' => $baseDir . '/app/Http/Controllers/AdminImageCompress.php',
     'App\\Http\\Controllers\\AdminImageController' => $baseDir . '/app/Http/Controllers/AdminImageController.php',
     'App\\Http\\Controllers\\AdminMainController' => $baseDir . '/app/Http/Controllers/AdminMainController.php',

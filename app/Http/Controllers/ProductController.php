@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
+    /**
+     * Show all products
+     * 
+     */
     public function all()
     {
         //Session::flush();
@@ -21,6 +25,10 @@ class ProductController extends Controller
         return view('front/product-all', ['products' => $products]);
     }
 
+    /**
+     * Show product
+     * 
+     */
     public function show($id)
     {  
         $product = Product::findOrFail($id);
@@ -34,24 +42,38 @@ class ProductController extends Controller
      */
     public function addToCard(CartServiceInterface $cart, $id)
     {
-        /*
-        $cart->setCart([
+    
+        $cart->setProduct([
             'id' => $id,
             'quantity' => 1,
             'date' => Carbon::now()->toDateTimeString()
         ]);
-        */
 
-        $cart->deleteCart([
+
+        /*
+        $cart->deleteProduct([
             'id' => $id,
             'date' => Carbon::now()->toDateTimeString()
         ]);
+        */
+        
+        /*
+        $products = $cart->allProducts();
+        */
 
-
+        /*
+        $cart->clearProducts();
+        */
+        
+        /*
         $products = Product::where('status', 'published')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
         return view('front/product-all', ['products' => $products]);
+        */
+
+        return redirect()->back();
+        
     }
 }

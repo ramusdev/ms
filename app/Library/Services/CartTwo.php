@@ -46,7 +46,7 @@
      * Set product to cart
      * 
      */
-    public function setCart($item)
+    public function setProduct($item)
     {
 
         $product = $this->findEntryInCart($item);
@@ -72,26 +72,45 @@
     }
 
     /**
-     * Delete from cart
+     * Delete product cart
      * 
      */
-    public function deleteCart($item)
+    public function deleteProduct($item)
     {   
         $entry = $this->findEntryInCart($item);
+        //dd($entry);
 
-        if ($entry) {
+        //if ($entry) {
             //dd($entry);
             if ($entry->quantity <= 1) {
-                //dd($entry);
                 $entry->delete();
             } else {
-                //dd($entry);
                 $entry->quantity = $entry->quantity - 1;
                 $entry->save();
             }
-        } else {
-            echo 'This product do not exist in cart';
-        }
+        //} else {
+            //echo 'This product do not exist in cart';
+        //}
+    }
+
+    /**
+     * All products from cart
+     * 
+     */
+    public function allProducts()
+    {
+        $entries = $this->cart->entries;
+        
+        return $entries;
+    }
+
+    /**
+     * Clear all products in cart
+     * 
+     */
+    public function clearProducts()
+    {
+        $entries = $this->cart->entries()->delete();
     }
 
     /**
@@ -101,10 +120,14 @@
     public function findEntryInCart($item)
     {
         $entries = $this->cart->entries;
+        //dd($item);
+        //dd($entries);
         
         $entry = $entries->first(function($value) use ($item) {
             return $value->product_id == $item['id'];
         });
+
+        //dd($entry);
 
         if ($entry) {
             return $entry;

@@ -9,6 +9,8 @@ namespace App\Library\Services\Contracts;
 
 Interface CartServiceInterface
 {
-    public function setCart($product);
-    public function deleteCart($product);
+    public function setProduct($product);
+    public function deleteProduct($product);
+    public function allProducts();
+    public function clearProducts();
 }

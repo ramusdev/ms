@@ -463,6 +463,7 @@ class ComposerStaticInit47700f24b1658b7edc046ac2f0efda0c
         'App\\Helpers\\Helper' => __DIR__ . '/../..' . '/app/Helpers/Helper.php',
         'App\\Http\\Controllers\\AdminCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminCategoryController.php',
         'App\\Http\\Controllers\\AdminCommentController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminCommentController.php',
+        'App\\Http\\Controllers\\AdminDiscountController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminDiscountController.php',
         'App\\Http\\Controllers\\AdminImageCompress' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminImageCompress.php',
         'App\\Http\\Controllers\\AdminImageController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminImageController.php',
         'App\\Http\\Controllers\\AdminMainController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminMainController.php',

@@ -11,7 +11,6 @@
                 <a class="nav-link" href="/options">Настройки</a>
             </nav>
         </div>
-        @csrf
         <form class="col-5" action="{{ action('AdminCategoryController@storeCategory') }}" method="post">
             @csrf
             <h5 class="d-inline-block">Добавить категорию</h5>
